@@ -42,15 +42,15 @@ RUN apt-get update && apt-get install -y \
 
 RUN systemctl daemon-reload && systemctl enable mongod
 
-#install Gradle
-ARG GRADLE_VERSION=7.5
-RUN wget -O gradle.zip https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip && \
-    mkdir /opt/gradle && \
-    unzip -d /opt/gradle gradle.zip && \
-    rm gradle.zip
-# Set Gradle in the environment variables
-ENV GRADLE_HOME="/opt/gradle/gradle-${GRADLE_VERSION}"
-ENV PATH="${GRADLE_HOME}/bin:${PATH}"
+# #install Gradle
+# ARG GRADLE_VERSION=7.5
+# RUN wget -O gradle.zip https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip && \
+#     mkdir /opt/gradle && \
+#     unzip -d /opt/gradle gradle.zip && \
+#     rm gradle.zip
+# # Set Gradle in the environment variables
+# ENV GRADLE_HOME="/opt/gradle/gradle-${GRADLE_VERSION}"
+# ENV PATH="${GRADLE_HOME}/bin:${PATH}"
 
 # Install node version manager
 RUN touch ~/.bashrc && chmod +x ~/.bashrc
