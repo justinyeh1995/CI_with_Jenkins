@@ -19,10 +19,13 @@ RUN apt-get update && apt-get install -y \
                                     git \
                                     gnupg \
                                     make \
+                                    openjdk-8-jdk \
+                                    openjdk-17-jdk \
                                     pip \
                                     systemctl \
                                     zip \
-                                    upzip
+                                    unzip \
+                                    wget
                                     
 # Install MongoDB
 RUN curl -fsSL https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add -
@@ -38,6 +41,16 @@ RUN apt-get update && apt-get install -y \
                                     mongodb-org-tools=4.4.22
 
 RUN systemctl daemon-reload && systemctl enable mongod
+
+#install Gradle
+ARG GRADLE_VERSION=7.5
+RUN wget -O gradle.zip https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip && \
+    mkdir /opt/gradle && \
+    unzip -d /opt/gradle gradle.zip && \
+    rm gradle.zip
+# Set Gradle in the environment variables
+ENV GRADLE_HOME="/opt/gradle/gradle-${GRADLE_VERSION}"
+ENV PATH="${GRADLE_HOME}/bin:${PATH}"
 
 # Install node version manager
 RUN touch ~/.bashrc && chmod +x ~/.bashrc
@@ -72,6 +85,7 @@ RUN apt-get install -y python-is-python3
 RUN python3 -m pip install jinja2 webgme-bindings
 
 COPY experiment_wrapper.sh /home/cpswt/
+COPY HelloWorldOmnetpp.webgmex /home/cpswt/cpswt-meta/seeds/_archive
 
 CMD [ "/bin/bash" ]
 
