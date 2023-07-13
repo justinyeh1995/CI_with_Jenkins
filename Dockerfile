@@ -64,7 +64,6 @@ WORKDIR /home/cpswt
 RUN git clone https://github.com/webgme/webgme-engine.git 
 RUN bash -c "source ~/.nvm/nvm.sh && nvm use node && cd /home/cpswt/webgme-engine && npm install"
 
-
 # Clone cpswt-meta
 WORKDIR /home/cpswt
 RUN mkdir ~/.ssh
