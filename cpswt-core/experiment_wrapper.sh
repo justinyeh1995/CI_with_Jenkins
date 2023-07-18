@@ -31,7 +31,7 @@ export PATH=$JAVA_HOME/bin:$ORIGINAL_PATH
 
 # clone cpswt-core and build it
 cd /home/cpswt
-git clone https://github.com/justinyeh1995/cpswt-core.git
+git clone https://github.com/SimIntToolkit/cpswt-core.git
 cd cpswt-core/cpswt-core
 
 gradle wrapper --gradle-version=7.5
@@ -43,16 +43,7 @@ gradle wrapper --gradle-version=7.5
 ./gradlew :federate-base:publish 
 ./gradlew :coa:publish 
 ./gradlew :federation-manager:publish 
-./gradlew :fedmanager-host:publish 
-
-./gradlew :utils:build 
-./gradlew :root:build 
-./gradlew :base-events:build 
-./gradlew :config:build 
-./gradlew :federate-base:build 
-./gradlew :coa:build 
-./gradlew :federation-manager:build
-./gradlew :fedmanager-host:build 
+./gradlew :fedmanager-host:publish
 
 cd /home/cpswt/cpswt-core/examples/HelloWorldJava
 gradle wrapper --gradle-version=7.5
