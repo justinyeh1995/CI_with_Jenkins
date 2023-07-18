@@ -31,7 +31,7 @@ export PATH=$JAVA_HOME/bin:$ORIGINAL_PATH
 
 # clone cpswt-core and build it
 cd /home/cpswt
-git clone https://github.com/justinyeh1995/cpswt-core.git
+git clone https://github.com/SimIntToolkit/cpswt-core.git
 cd cpswt-core/cpswt-core
 
 gradle wrapper --gradle-version=7.5
@@ -47,10 +47,10 @@ gradle wrapper --gradle-version=7.5
 
 # build cpswt-cpp
 cd /home/cpswt
-git clone git@github.com:SimIntToolkit/cpswt-cpp.git
+git clone https://github.com/SimIntToolkit/cpswt-cpp.git
 cd cpswt-cpp
 
-gradle wrapper --gradle-version=7.5
+gradle wrapper --gradle-version=8.0
 
 ./gradlew :foundation:CppTestHarness:publish
 ./gradlew :foundation:core-cpp:publish
@@ -60,6 +60,6 @@ gradle wrapper --gradle-version=7.5
 ./gradlew :foundation:SynchronizedFederate:publish
 
 cd /home/cpswt/cpswt-cpp/examples/HelloWorldCpp
-gradle wrapper --gradle-version=7.5
+gradle wrapper --gradle-version=8.0
 
 ./gradlew :runFederationBatch
