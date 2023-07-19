@@ -1,6 +1,6 @@
 # this script is used to build cpswt-core and its dependencies in the docker container 
 ORIGINAL_PATH=$PATH
-export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-arm64
+export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
 export PATH=$JAVA_HOME/bin:$PATH
 /opt/apache-archiva-2.2.5/bin/archiva start
 
@@ -32,7 +32,7 @@ TERMINUS
 
 # switch to java 17
 unset JAVA_HOME
-export JAVA_HOME=/usr/lib/jvm/java-1.17.0-openjdk-arm64
+export JAVA_HOME=/usr/lib/jvm/java-1.17.0-openjdk-amd64
 export PATH=$JAVA_HOME/bin:$ORIGINAL_PATH
 
 # clone cpswt-core and build it
