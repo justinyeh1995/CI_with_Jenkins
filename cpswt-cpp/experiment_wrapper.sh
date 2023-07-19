@@ -67,5 +67,7 @@ gradle wrapper --gradle-version=8.0
 
 cd /home/cpswt/cpswt-cpp/examples/HelloWorldCpp
 gradle wrapper --gradle-version=8.0
-
+./gradlew :Source:build
+./gradlew :Sink:build
+./gradlew :PingCounter:build
 ./gradlew :runFederationBatch
