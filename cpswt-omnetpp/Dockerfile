@@ -31,6 +31,7 @@ RUN apt-get update && \
         make \
         mongodb \
         mpi-default-dev \
+        netcat \
         openjdk-8-jdk \
         openjdk-17-jdk \
         openscenegraph-plugin-osgearth \
