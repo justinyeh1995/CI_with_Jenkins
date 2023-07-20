@@ -53,7 +53,7 @@ gradle wrapper --gradle-version=7.5
 
 # build cpswt-cpp
 cd /home/cpswt
-git clone git@github.com:SimIntToolkit/cpswt-cpp.git
+git clone https://github.com/SimIntToolkit/cpswt-cpp.git
 cd cpswt-cpp
 
 gradle wrapper --gradle-version=8.0
@@ -71,7 +71,7 @@ wget https://github.com/omnetpp/omnetpp/releases/download/omnetpp-5.6.2/omnetpp-
 # Untar the omnetpp-5.6.2-src-linux.tgz tarball into your /opt directory:
 tar -xzf omnetpp-5.6.2-src-linux.tgz -C /opt
 # Change the ownership of the /opt/omnetpp-5.6.2 directory to your user:
-chown -R cpswt:cpswt /opt/omnetpp-5.6.2
+#chown -R cpswt:cpswt /opt/omnetpp-5.6.2
 
 # Build OMNeT++ version 5.6.2
 export PATH="/opt/omnetpp-5.6.2/bin:$PATH"
@@ -85,19 +85,19 @@ wget https://github.com/inet-framework/inet/releases/download/v4.2.5/inet-4.2.5-
 # Untar the inet-4.2.5-src.tgz tarball into your /opt directory:
 tar -xzf inet-4.2.5-src.tgz -C /opt
 # Change the ownership of the /opt/inet4 directory to your user:
-chown -R cpswt:cpswt /opt/inet4
+#chown -R cpswt:cpswt /opt/inet4
 
 # Build the INET framework, version 4.2.5
 export INET_HOME="/opt/inet4"
+bash -li <<TERMINUS
 cd /opt/inet4
 . setenv
 make makefiles
 make
 make MODE=debug
+TERMINUS
 
-cd /home/cpswt
-git clone git@github.com:SimIntToolkit/cpswt-omnetpp.git
-cd cpswt-omnetpp
+cd /home/cpswt/cpswt-omnetpp
 
 # Build the OmnetFederate:
 ./gradlew :foundation:OmnetFederate:build
