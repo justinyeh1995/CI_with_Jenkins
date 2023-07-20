@@ -89,11 +89,13 @@ chown -R cpswt:cpswt /opt/inet4
 
 # Build the INET framework, version 4.2.5
 export INET_HOME="/opt/inet4"
+bash -li <<TERMINUS
 cd /opt/inet4
 . setenv
 make makefiles
 make
 make MODE=debug
+TERMINUS
 
 cd /home/cpswt
 git clone git@github.com:SimIntToolkit/cpswt-omnetpp.git
