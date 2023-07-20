@@ -102,6 +102,7 @@ cd /home/cpswt/cpswt-omnetpp
 # Build the OmnetFederate:
 ./gradlew :foundation:OmnetFederate:build
 export OMNETPP_CPSWT_HOME=/home/cpswt/cpswt-omnetpp/foundation/OmnetFederate
+cd /home/cpswt/cpswt-omnetpp/examples/HelloWorldOmnetpp
 touch build.dummy.kts
 gradle -b build.dummy.kts wrapper --gradle-version=8.0
 ./gradlew :Source:build
