@@ -1,12 +1,19 @@
 # this script is used to build cpswt-core and its dependencies in the docker container 
 ORIGINAL_PATH=$PATH
-export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-arm64
+export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
 export PATH=$JAVA_HOME/bin:$PATH
 /opt/apache-archiva-2.2.5/bin/archiva start
 
 # wait for archiva to start
-# nc -zv localhost 8080
-sleep 20
+# wait for archiva to start
+echo "Waiting archiva to launch on 8080..."
+
+while ! nc -z localhost 8080; do   
+  sleep 0.1 # wait for 1/10 of the second before check again
+done
+
+echo "archiva launched"
+
 # create admin user
 curl --no-progress-meter -X POST -H "Content-Type: application/json" -H "Origin: http://localhost:8080" -d @- \
  http://localhost:8080/restServices/redbackServices/userService/createAdminUser <<'TERMINUS'
@@ -26,7 +33,7 @@ TERMINUS
 
 # switch to java 17
 unset JAVA_HOME
-export JAVA_HOME=/usr/lib/jvm/java-1.17.0-openjdk-arm64
+export JAVA_HOME=/usr/lib/jvm/java-1.17.0-openjdk-amd64
 export PATH=$JAVA_HOME/bin:$ORIGINAL_PATH
 
 # clone cpswt-core and build it
