@@ -7,8 +7,6 @@ The host machine is expected to be a Linux machine with a intel CPU.
 The host machine is expected to have the following software installed:
 
 - Docker
-
+- Nginx
 
 ## Set up Jenkins
-
-
