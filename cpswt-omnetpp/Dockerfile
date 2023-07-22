@@ -99,6 +99,19 @@ RUN chmod 600 /root/.gradle/gradle.properties
 RUN mkdir /home/cpswt
 COPY experiment_wrapper.sh /home/cpswt
 
+# Clone CPSWT-OMNETPP
+WORKDIR /home/cpswt
+RUN mkdir ~/.ssh
+ARG ssh_prv_key
+ARG ssh_pub_key
+RUN echo "$ssh_prv_key" > /root/.ssh/id_rsa && \
+    echo "$ssh_pub_key" > /root/.ssh/id_rsa.pub && \
+    chmod 600 /root/.ssh/id_rsa && \
+    chmod 600 /root/.ssh/id_rsa.pub && \
+    ssh-keyscan github.com >> /root/.ssh/known_hosts && \
+    git clone git@github.com:SimIntToolkit/cpswt-omnetpp.git && \
+    rm /root/.ssh/id_rsa*
+
 WORKDIR /home/cpswt
 # Start Archiva
 CMD ["/usr/bin/bash", "experiment_wrapper.sh"] 
