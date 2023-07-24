@@ -101,12 +101,10 @@ RUN wget https://github.com/omnetpp/omnetpp/releases/download/omnetpp-5.6.2/omne
 # Untar the omnetpp-5.6.2-src-linux.tgz tarball into your /opt directory:
 RUN tar -xzf omnetpp-5.6.2-src-linux.tgz -C /opt
 
-# Build OMNeT++
 # Build OMNeT++ version 5.6.2
-
 ENV PATH="/opt/omnetpp-5.6.2/bin:$PATH"
 WORKDIR /opt/omnetpp-5.6.2
-RUN ./configure WITH_OSG=no WITH_OSGEARTH=no WITH_QTENV=no
+RUN ./configure WITH_TKENV=no WITH_QTENV=no
 RUN make -j$(nproc)
 
 # Install the INET framework, version 4.2.5
@@ -126,7 +124,7 @@ make MODE=debug
 TERMINUS
 
 # Clone and build CPSWT packages
-RUN mkdir /home/cpswt
+WORKDIR /home/cpswt
 COPY experiment_wrapper.sh /home/cpswt
 
 # Clone CPSWT-OMNETPP
