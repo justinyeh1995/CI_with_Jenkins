@@ -29,7 +29,7 @@ pipeline {
                         cpswt-meta:latest'
             }
         }
-        stage('Wait for container to stop') {
+        stage('Wait for cpswt-meta container to stop') {
             options {
                 timeout(time: 30, unit: 'MINUTES')
             }
@@ -60,7 +60,7 @@ pipeline {
                         helloworldjava:latest'
             }
         }
-        stage('Wait for container to stop') {
+        stage('Wait for HelloWorldJava container to stop') {
             options {
                 timeout(time: 30, unit: 'MINUTES')
             }
