@@ -9,7 +9,7 @@ pipeline {
             steps {
                 echo 'Cloning CPSWT-Meta..'
                 deleteDir() // Delete workspace before cloning
-                git url: 'https://github.com/justinyeh1995/CI_with_Jenkins.git'
+                sh 'git clone https://github.com/justinyeh1995/CI_with_Jenkins.git'
             }
         }
         stage('Build cpswt-meta image') {
