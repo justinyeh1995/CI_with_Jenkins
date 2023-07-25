@@ -72,8 +72,11 @@ RUN cd cpswt-meta && apt-get install -y python-is-python2
 RUN bash -c "source ~/.nvm/nvm.sh && nvm use 8.10.0 && cd /home/cpswt/cpswt-meta && npm install"
 RUN apt-get install -y python-is-python3
 
+# Clone cpswt-core for HelloWorldJava example seed
+WORKDIR /home/cpswt
+RUN git clone https://github.com/SimIntToolkit/cpswt-core.git
+
 RUN python3 -m pip install jinja2 webgme-bindings
-RUN pwd
 COPY experiment_wrapper.sh /home/cpswt
 
 CMD [ "/bin/bash"]
