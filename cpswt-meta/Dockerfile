@@ -73,10 +73,10 @@ RUN bash -c "source ~/.nvm/nvm.sh && nvm use 8.10.0 && cd /home/cpswt/cpswt-meta
 RUN apt-get install -y python-is-python3
 
 RUN python3 -m pip install jinja2 webgme-bindings
-
+RUN pwd
 COPY experiment_wrapper.sh /home/cpswt
 
-CMD [ "/bin/bash" ]
+CMD [ "/bin/bash", "experiment_wrapper.sh"]
 
 
 
