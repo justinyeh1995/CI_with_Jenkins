@@ -11,7 +11,7 @@ cd /home/cpswt/cpswt-meta
 # generate .zip file
 nvm use 8.10.0
 export PYTHONPATH=$PWD/src/plugins/PyFederatesExporter/PyFederatesExporter
-sed -i 's/HelloWorldOmnetpp/HelloWorldJava/g' src/plugins/PyFederatesExporter/run_debug.py
+sed -i 's/HelloWorldOmnetpp/HelloWorldJava/g' $PWD/src/plugins/PyFederatesExporter/run_debug.py
 python3 $PWD/src/plugins/PyFederatesExporter/run_debug.py
 
 #unzip .zip
