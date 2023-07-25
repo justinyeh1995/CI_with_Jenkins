@@ -5,13 +5,6 @@ pipeline {
     }
 
     stages {
-        stage('Clone repository') {
-            steps {
-                echo 'Cloning Forked CPSWT-Core..'
-                deleteDir() // Delete workspace before cloning
-                git url: 'https://github.com/justinyeh1995/cpswt-core.git', branch: 'develop'
-            }
-        }
         stage('Build cpswt-meta image') {
             steps {
                 echo 'Start a Docker Container for this experiment, which should start the experiment and a archiva server, a inet server, and a omnet++ server..'
