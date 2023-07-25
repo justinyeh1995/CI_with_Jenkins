@@ -76,7 +76,7 @@ RUN python3 -m pip install jinja2 webgme-bindings
 RUN pwd
 COPY experiment_wrapper.sh /home/cpswt
 
-CMD [ "/bin/bash", "experiment_wrapper.sh"]
+CMD [ "/bin/bash"]
 
 
 
