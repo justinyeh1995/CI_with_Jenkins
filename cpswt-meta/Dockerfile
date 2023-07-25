@@ -75,7 +75,6 @@ RUN apt-get install -y python-is-python3
 RUN python3 -m pip install jinja2 webgme-bindings
 
 COPY experiment_wrapper.sh /home/cpswt/
-COPY HelloWorldOmnetpp.webgmex /home/cpswt/cpswt-meta/seeds/_archive
 
 CMD [ "/bin/bash" ]
 
