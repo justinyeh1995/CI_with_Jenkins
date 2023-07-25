@@ -79,7 +79,7 @@ RUN git clone https://github.com/SimIntToolkit/cpswt-core.git
 RUN python3 -m pip install jinja2 webgme-bindings
 COPY experiment_wrapper.sh /home/cpswt
 
-CMD [ "/bin/bash"]
+CMD [ "/bin/bash", "/home/cpswt/experiment_wrapper.sh" ]
 
 
 
