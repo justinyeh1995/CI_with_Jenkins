@@ -16,8 +16,7 @@ pipeline {
             steps {
                 echo 'Start a Docker Container for this experiment, which should start the experiment and a archiva server, a inet server, and a omnet++ server..'
                 sh 'cd CI_with_Jenkins/cpswt-meta'
-                sh 'ls -la'
-                sh 'docker build -t cpswt-meta:latest -f Dockerfile .'
+                sh 'docker build -t cpswt-meta:latest -f CI_with_Jenkins/cpswt-meta/Dockerfile .'
             }
         }
         stage('Deploy image') {
