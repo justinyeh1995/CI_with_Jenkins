@@ -2,6 +2,9 @@ systemctl start mongod
 
 sleep 5
 
+# Source nvm environment
+[ -s "/root/.nvm/nvm.sh" ] && \. "/root/.nvm/nvm.sh"
+
 cd /home/cpswt/webgme-engine
 
 node src/bin/import.js -m mongodb://127.0.0.1:27017/c2webgme -p HelloWorldJava ../cpswt-core/examples/HelloWorldJava/Model/HelloWorldJava.webgmex #../cpswt-meta/seeds/_archive/CPSWT_Helloworld_Java_Tutorial
