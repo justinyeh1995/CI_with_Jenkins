@@ -47,7 +47,7 @@ pipeline {
         stage('Build HelloWorldJava image') {
             steps {
                 echo 'Start a Docker Container for HelloWorldJava'
-                sh 'docker build -t helloworldjava:latest -f Dockerfile.HelloWorldJava .'
+                sh 'docker build -t helloworldjava:latest -f HelloWorldJava.Dockerfile .'
             }
         }
         stage('Deploy HelloWorldJava image') {
