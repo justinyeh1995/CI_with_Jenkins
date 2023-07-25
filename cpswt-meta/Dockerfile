@@ -74,7 +74,7 @@ RUN apt-get install -y python-is-python3
 
 RUN python3 -m pip install jinja2 webgme-bindings
 
-COPY experiment_wrapper.sh /home/cpswt/
+COPY experiment_wrapper.sh /home/cpswt
 
 CMD [ "/bin/bash" ]
 
