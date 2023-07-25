@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Clone repository') {
             steps {
-                echo 'Cloning CPSWT-Meta..'
+                echo 'Cloning CI_with_Jenkins...'
                 deleteDir() // Delete workspace before cloning
                 sh 'git clone https://github.com/justinyeh1995/CI_with_Jenkins.git'
             }
