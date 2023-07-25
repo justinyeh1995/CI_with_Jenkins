@@ -43,6 +43,7 @@ pipeline {
             steps {
                 sh 'docker cp cpswt-meta:/tmp/HelloWorldJava.zip .'
                 sh 'unzip HelloWorldJava.zip -d .'
+                sh 'pwd'
             }
         }
         stage('Build HelloWorldJava image') {
