@@ -16,9 +16,9 @@ pipeline {
             steps {
                 echo 'Start a Docker Container for this experiment, which should start the experiment and a archiva server, a inet server, and a omnet++ server..'
                 sh 'pwd'
-                sh 'cd $PWD/CI_with_Jenkins/cpswt-meta/'
-                sh 'ls'
-                sh 'docker build -t cpswt-meta:latest -f Dockerfile --build-arg ssh_prv_key="$(cat ~/.ssh/id_rsa)" --build-arg ssh_pub_key="$(cat ~/.ssh/id_rsa.pub)" .'
+                dir("CI_with_Jenkins/cpswt-meta") {
+                    sh 'docker build -t cpswt-meta:latest -f Dockerfile --build-arg ssh_prv_key="$(cat ~/.ssh/id_rsa)" --build-arg ssh_pub_key="$(cat ~/.ssh/id_rsa.pub)" .'
+                }
             }
         }
         stage('Deploy image') {
