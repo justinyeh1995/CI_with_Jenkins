@@ -5,10 +5,17 @@ pipeline {
     }
 
     stages {
+        stage('Clone repository') {
+            steps {
+                echo 'Cloning Forked CPSWT-Core..'
+                deleteDir() // Delete workspace before cloning
+                git url: 'https://github.com/justinyeh1995/CI_with_Jenkins.git', branch: 'develop'
+            }
+        }
         stage('Build cpswt-meta image') {
             steps {
                 echo 'Start a Docker Container for this experiment, which should start the experiment and a archiva server, a inet server, and a omnet++ server..'
-                sh 'cd cpswt-core'
+                sh 'cd cpswt-meta'
                 sh 'docker build -t cpswt-meta:latest -f Dockerfile .'
             }
         }
