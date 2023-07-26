@@ -84,8 +84,6 @@ WORKDIR /opt
 RUN wget -O archiva.tar.gz https://archive.apache.org/dist/archiva/2.2.5/binaries/apache-archiva-2.2.5-bin.tar.gz && \
     tar xf archiva.tar.gz && \
     rm archiva.tar.gz
-COPY wrapper-linux-aarch64-64 /opt/apache-archiva-2.2.5/bin/./
-RUN chmod +x /opt/apache-archiva-2.2.5/bin/wrapper-linux-aarch64-64
 
 # Expose the Archiva port
 EXPOSE 8080/tcp
@@ -100,7 +98,9 @@ RUN chmod 600 /root/.gradle/gradle.properties
 # Clone and build CPSWT packages
 RUN mkdir /home/cpswt
 COPY HelloWorldJava_wrapper.sh /home/cpswt
-COPY /var/lib/jenkins/workspace/DemoCPSWTMeta/HelloWorldJava /home/cpswt/HelloWorldJava
+RUN ls /var/lib/jenkins/workspace/DemoCPSWTMeta
+RUN echo $PWD
+COPY /var/lib/jenkins/workspace/DemoCPSWTMeta/HelloWorldJava /home/cpswt
 
 WORKDIR /home/cpswt
 # Start Archiva
