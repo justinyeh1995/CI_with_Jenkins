@@ -38,6 +38,7 @@ export PATH=$JAVA_HOME/bin:$ORIGINAL_PATH
 
 # clone cpswt-core and build it
 cd /home/cpswt
+ls -la
 git clone https://github.com/SimIntToolkit/cpswt-core.git
 cd cpswt-core/cpswt-core
 
