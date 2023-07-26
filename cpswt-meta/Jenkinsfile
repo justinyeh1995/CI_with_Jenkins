@@ -42,7 +42,7 @@ pipeline {
         stage('Output HelloWorldJava from container') {
             steps {
                 sh 'docker cp cpswt-meta:/tmp/HelloWorldJava.zip .'
-                sh 'sudo -S 123456789@rrSS unzip HelloWorldJava.zip -d /home/justinyeh1995/CI_with_Jenkins/cpswt-meta'
+                sh 'unzip HelloWorldJava.zip -d .'
                 sh 'pwd'
             }
         }
