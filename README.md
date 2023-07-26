@@ -12,6 +12,15 @@ The host machine is expected to have the following software installed:
 ## Configuration 
 Jenkins & Docker
 
+Jenkins & Nginx
+- [Configure Nginx as a reverse proxy for Jenkins](https://www.jenkins.io/doc/book/system-administration/reverse-proxy-configuration-with-jenkins/reverse-proxy-configuration-nginx/)
+
+
+## Configure Jenkins Plugins
+
+## Configure Jenkins Global Tool Configuration
+
+## Configure Jenkins Job 
 Jenkins new Job
 
 add ssh key
