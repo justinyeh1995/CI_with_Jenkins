@@ -89,11 +89,11 @@ pipeline {
     post {
         always {
             echo 'This will always run'
-            emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\\n More info at: ${env.BUILD_URL}",
+            emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
                     recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
                     subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
                     attachLog: true,
-                    attachmentsPattern: 'cpswt-core.log'
+                    attachmentsPattern: 'cpswt-meta.log', 'helloworldjava.log'
             echo 'Tearing Down the image & container....'
             sh 'docker rm -f cpswt-meta'
             sh 'docker rm -f helloworldjava'
