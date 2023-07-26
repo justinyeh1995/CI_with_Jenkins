@@ -41,16 +41,18 @@ pipeline {
         }
         stage('Output HelloWorldJava from container') {
             steps {
-                sh 'docker cp cpswt-meta:/tmp/HelloWorldJava.zip .'
-                sh 'unzip HelloWorldJava.zip -d .'
-                sh 'pwd'
+                dir("CI_with_Jenkins/cpswt-meta"){
+                    sh 'docker cp cpswt-meta:/tmp/HelloWorldJava.zip .'
+                    sh 'unzip HelloWorldJava.zip -d .'
+                    sh 'pwd'
+                }
             }
         }
         stage('Build HelloWorldJava image') {
             steps {
                 echo 'Start a Docker Container for HelloWorldJava'
                 dir("CI_with_Jenkins/cpswt-meta") {
-                sh 'docker build -t helloworldjava:latest -f HelloWorldJava.Dockerfile .'
+                    sh 'docker build -t helloworldjava:latest -f HelloWorldJava.Dockerfile .'
                 }
             }
         }
