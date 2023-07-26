@@ -38,7 +38,6 @@ export PATH=$JAVA_HOME/bin:$ORIGINAL_PATH
 
 # clone cpswt-core and build it
 cd /home/cpswt
-ls -la
 git clone https://github.com/SimIntToolkit/cpswt-core.git
 cd cpswt-core/cpswt-core
 
@@ -53,7 +52,18 @@ gradle wrapper --gradle-version=7.5
 ./gradlew :federation-manager:publish 
 ./gradlew :fedmanager-host:publish
 
+# Run the HelloWorldJava example
 cd /home/cpswt/HelloWorldJava
+cp /home/cpswt/cpswt-core/examples/HelloWorldJava/PingCounter/build.gradle.kts   HelloWorldJava/PingCounter/build.gradle.kts
+cp /home/cpswt/cpswt-core/examples/HelloWorldJava/PingCounter/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/pingcounter/PingCounter.java HelloWorldJava/PingCounter/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/pingcounter/PingCounter.java
+cp /home/cpswt/cpswt-core/examples/HelloWorldJava/Sink/build.gradle.kts HelloWorldJava/Sink/build.gradle.kts
+cp /home/cpswt/cpswt-core/examples/HelloWorldJava/Sink/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/sink/Sink.java HelloWorldJava/Sink/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/sink/Sink.java
+cp /home/cpswt/cpswt-core/examples/HelloWorldJava/Source/build.gradle.kts HelloWorldJava/Source/build.gradle.kts
+cp /home/cpswt/cpswt-core/examples/HelloWorldJava/Source/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/source/Source.java HelloWorldJava/Source/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/source/Source.java
+cp /home/cpswt/cpswt-core/examples/HelloWorldJava/build.gradle.kts HelloWorldJava/build.gradle.kts
+cp /home/cpswt/cpswt-core/examples/HelloWorldJava/conf/default_experiment/default_experiment.json HelloWorldJava/conf/default_experiment/default_experiment.json
+cp /home/cpswt/cpswt-core/examples/HelloWorldJava/settings.gradle.kts HelloWorldJava/settings.gradle.kts
+
 gradle wrapper --gradle-version=7.5
 ./gradlew :Source:build
 ./gradlew :Sink:build
