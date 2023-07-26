@@ -63,8 +63,8 @@ buildscript {
     }
 }
 
-include("Sink")
+include("PingCounter")
 
 include("Source")
 
-include("PingCounter")
+include("Sink")

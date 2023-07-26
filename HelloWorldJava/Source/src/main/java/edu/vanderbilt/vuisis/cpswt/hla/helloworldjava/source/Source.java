@@ -87,21 +87,12 @@ public class Source extends SourceBase {
         while (!exitCondition) {
             atr.requestSyncStart();
 
-            ////////////////////////////////////////////////////////////////////////////
-            // TODO send interactions that must be sent every logical time step below //
-            ////////////////////////////////////////////////////////////////////////////
-
-            // Set the interaction's parameters.
-            //
-        
-            // edu.vanderbilt.vuisis.cpswt.hla.InteractionRoot_p.C2WInteractionRoot_p.Ping Ping0 = create_InteractionRoot_C2WInteractionRoot_Ping();
-            //Ping0.set_actualLogicalGenerationTime( < YOUR VALUE HERE > );
-            //Ping0.set_federateFilter( < YOUR VALUE HERE > );
-            // sendInteraction(Ping0, currentTime + getLookahead());
-
-            ////////////////////////////////////////////////////////////////////
-            // TODO break here if ready to resign and break out of while loop //
-            ////////////////////////////////////////////////////////////////////
+            System.out.println("Source:  sending ping");
+            edu.vanderbilt.vuisis.cpswt.hla.InteractionRoot_p.C2WInteractionRoot_p.Ping Ping0 =
+                    create_InteractionRoot_C2WInteractionRoot_Ping();
+            Ping0.set_actualLogicalGenerationTime( currentTime );
+            Ping0.set_federateFilter( "" );
+            sendInteraction(Ping0, currentTime + getLookahead());
 
             if (!exitCondition) {
                 currentTime += super.getStepSize();

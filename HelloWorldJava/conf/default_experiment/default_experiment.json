@@ -2,7 +2,7 @@
     "expectedFederates": [
         {
             "count": 1,
-            "federateType": "Sink"
+            "federateType": "PingCounter"
         },
         {
             "count": 1,
@@ -10,18 +10,18 @@
         },
         {
             "count": 1,
-            "federateType": "PingCounter"
+            "federateType": "Sink"
         }
     ],
     "federateTypesAllowed": [
-        "Sink",
+        "PingCounter",
         "Source",
-        "PingCounter"
+        "Sink"
     ],
     "lateJoinerFederates": [
         {
             "count": 0,
-            "federateType": "Sink"
+            "federateType": "PingCounter"
         },
         {
             "count": 0,
@@ -29,7 +29,7 @@
         },
         {
             "count": 0,
-            "federateType": "PingCounter"
+            "federateType": "Sink"
         }
     ]
 }

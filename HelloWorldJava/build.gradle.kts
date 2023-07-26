@@ -139,17 +139,17 @@ val runFederationManagerAsynchronousBatch = tasks.register("runFederationManager
 val runFederatesAsynchronous = tasks.register("runFederatesAsynchronous") {
     mustRunAfter(runFederationManagerAsynchronous)
     dependsOn(runFederationManagerAsynchronous)
-    dependsOn(":Sink:runAsynchronous")
-    dependsOn(":Source:runAsynchronous")
     dependsOn(":PingCounter:runAsynchronous")
+    dependsOn(":Source:runAsynchronous")
+    dependsOn(":Sink:runAsynchronous")
 }
 
 val runFederatesAsynchronousBatch = tasks.register("runFederatesAsynchronousBatch") {
     mustRunAfter(runFederationManagerAsynchronousBatch)
     dependsOn(runFederationManagerAsynchronousBatch)
-    dependsOn(":Sink:runAsynchronousBatch")
-    dependsOn(":Source:runAsynchronousBatch")
     dependsOn(":PingCounter:runAsynchronousBatch")
+    dependsOn(":Source:runAsynchronousBatch")
+    dependsOn(":Sink:runAsynchronousBatch")
 }
 
 val runFederatesInteractive = tasks.register("runFederatesInteractive") {
@@ -168,17 +168,17 @@ val runFederatesInteractive = tasks.register("runFederatesInteractive") {
 tasks.register("runFederation") {
     mustRunAfter(runFederatesInteractive)
     dependsOn(runFederatesInteractive)
-    dependsOn(":Sink:killFederate")
-    dependsOn(":Source:killFederate")
     dependsOn(":PingCounter:killFederate")
+    dependsOn(":Source:killFederate")
+    dependsOn(":Sink:killFederate")
 }
 
 val runFederationBatch = tasks.register("runFederationBatch") {
     mustRunAfter(runFederatesAsynchronousBatch)
     dependsOn(runFederatesAsynchronousBatch)
+    dependsOn(":PingCounter:waitForFederate")
     dependsOn(":Sink:waitForFederate")
     dependsOn(":Source:waitForFederate")
-    dependsOn(":PingCounter:waitForFederate")
     doLast {
         spawnedProcess?.waitFor()
     }

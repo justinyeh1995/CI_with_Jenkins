@@ -37,7 +37,7 @@ plugins {
     application
 }
 
-val rtiHome: String? = System.getenv("RTI_HOME")
+val rtiHome = System.getenv("RTI_HOME")
 
 val archivaHostId: String by project
 val archivaPort: String by project
@@ -100,7 +100,7 @@ fun configureProcessBuilder(processBuilder: ProcessBuilder) {
     processBuilder.directory(projectDir)
 
     val environment = processBuilder.environment()
-    environment["CLASSPATH"] = classPath
+    environment.put("CLASSPATH", classPath)
 }
 
 fun spawnProcess() {
@@ -120,7 +120,7 @@ fun spawnProcessBatch() {
 
     val statusDirectory = File(projectDir, "StatusDirectory")
     if (!statusDirectory.exists()) {
-        Files.createDirectory(statusDirectory.toPath())
+        Files.createDirectory(statusDirectory.toPath());
     }
     val stdoutFile = File(statusDirectory, "stdout")
     val stderrFile = File(statusDirectory, "stderr")
@@ -138,14 +138,12 @@ fun spawnProcessBatch() {
 }
 
 tasks.register("runAsynchronous") {
-    dependsOn("build")
     doLast {
         spawnProcess()
     }
 }
 
 val runAsynchronousBatch = tasks.register("runAsynchronousBatch") {
-    dependsOn("build")
     doLast {
         spawnProcessBatch()
     }

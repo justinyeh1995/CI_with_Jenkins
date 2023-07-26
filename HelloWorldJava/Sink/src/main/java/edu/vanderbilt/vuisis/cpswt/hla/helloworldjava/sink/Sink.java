@@ -47,28 +47,33 @@ public class Sink extends SinkBase {
     private final static Logger log = LogManager.getLogger();
 
     private double currentTime = 0;
+    private int pingCount = 0;
 
     ////////////////////////////////////////////////////////////////////////
     // TODO instantiate objects that must be sent every logical time step //
     ////////////////////////////////////////////////////////////////////////
-    // edu.vanderbilt.vuisis.cpswt.hla.ObjectRoot_p.PingCounter PingCounter_0 =
-    //     new edu.vanderbilt.vuisis.cpswt.hla.ObjectRoot_p.PingCounter();
+    edu.vanderbilt.vuisis.cpswt.hla.ObjectRoot_p.PingCounter PingCounter_0 =
+            new edu.vanderbilt.vuisis.cpswt.hla.ObjectRoot_p.PingCounter();
 
     public Sink(FederateConfig params) throws Exception {
         super(params);
 
-        //////////////////////////////////////////////////////
-        // TODO register object instances after super(args) //
-        //////////////////////////////////////////////////////
-        // registerObject(PingCounter_0);
+        registerObject(PingCounter_0);
     }
 
     private void handleInteractionClass_InteractionRoot_C2WInteractionRoot_Ping(InteractionRoot interactionRoot) {
-        edu.vanderbilt.vuisis.cpswt.hla.InteractionRoot_p.C2WInteractionRoot_p.Ping ping0 =
+        edu.vanderbilt.vuisis.cpswt.hla.InteractionRoot_p.C2WInteractionRoot_p.Ping ping1 =
             (edu.vanderbilt.vuisis.cpswt.hla.InteractionRoot_p.C2WInteractionRoot_p.Ping)interactionRoot;
-        ///////////////////////////////////////////////////////////////
-        // TODO implement how to handle reception of the interaction //
-        ///////////////////////////////////////////////////////////////
+
+        System.out.println("Sink:  Received ping.  Updating ping count to " + ++pingCount);
+
+        PingCounter_0.set_pingCount(pingCount);
+        try {
+            updateAttributeValues(PingCounter_0, currentTime + getLookahead());
+        } catch (Exception exception) {
+            System.err.println("Received Exception:  " + exception.getMessage());
+            exception.printStackTrace();
+        }
     }
 
     private void checkReceivedSubscriptions() {
@@ -123,16 +128,6 @@ public class Sink extends SinkBase {
             atr.requestSyncStart();
 
             checkReceivedSubscriptions();
-
-            //////////////////////////////////////////////////////////////////////
-            // TODO update objects that must be updated every logical time step //
-            //////////////////////////////////////////////////////////////////////
-            //PingCounter_0.set_('ObjectRoot.PingCounter', 'pingCount')(<YOUR VALUE HERE >);
-            // updateAttributeValues(PingCounter_0, currentTime + getLookahead());
-
-            ////////////////////////////////////////////////////////////////////
-            // TODO break here if ready to resign and break out of while loop //
-            ////////////////////////////////////////////////////////////////////
 
             if (!exitCondition) {
                 currentTime += super.getStepSize();

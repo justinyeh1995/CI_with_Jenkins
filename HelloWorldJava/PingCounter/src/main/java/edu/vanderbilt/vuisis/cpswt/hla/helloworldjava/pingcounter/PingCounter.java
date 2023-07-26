@@ -53,12 +53,17 @@ public class PingCounter extends PingCounterBase {
         super(params);
     }
 
+    int counter = 0;
+
     private void handleObjectClass_ObjectRoot_PingCounter(ObjectRoot objectRoot) {
-        edu.vanderbilt.vuisis.cpswt.hla.ObjectRoot_p.PingCounter pingCounter1 =
+        edu.vanderbilt.vuisis.cpswt.hla.ObjectRoot_p.PingCounter pingCounter0 =
             (edu.vanderbilt.vuisis.cpswt.hla.ObjectRoot_p.PingCounter)objectRoot;
-        //////////////////////////////////////////////////////////
-        // TODO implement how to handle reception of the object //
-        //////////////////////////////////////////////////////////
+
+        if (++counter >= 5) {
+            exitCondition = true;
+        }
+
+        System.out.println("PingCounter:  ping count is now " + pingCounter0.get_pingCount());
     }
 
     private void checkReceivedSubscriptions() {
