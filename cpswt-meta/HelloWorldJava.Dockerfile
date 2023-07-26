@@ -98,9 +98,8 @@ RUN chmod 600 /root/.gradle/gradle.properties
 # Clone and build CPSWT packages
 RUN mkdir /home/cpswt
 COPY HelloWorldJava_wrapper.sh /home/cpswt
-RUN ls /var/lib/jenkins/workspace/DemoCPSWTMeta
-RUN echo $PWD
-COPY /var/lib/jenkins/workspace/DemoCPSWTMeta/HelloWorldJava /home/cpswt
+RUN mkdir /home/cpswt/HelloWorldJava
+COPY HelloWorldJava /home/cpswt/HelloWorldJava
 
 WORKDIR /home/cpswt
 # Start Archiva
