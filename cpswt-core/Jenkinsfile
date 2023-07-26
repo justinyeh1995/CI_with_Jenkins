@@ -19,23 +19,11 @@ pipeline {
                 sh 'docker build -t cpswt-core:latest -f Dockerfile .'
             }
         }
-        stage('Check network') {
-            steps {
-                echo 'Checking if cpswt-core network is in docker network....'
-                sh 'docker network create --driver bridge cpswt-core || true'
-            }
-        }
         stage('Deploy image') {
             steps {
                 echo 'Run the Docker Container inside Jenkins container'
                 sh 'docker run \
                         --name cpswt-core \
-                        --restart=on-failure \
-                        --detach \
-                        --network cpswt-core \
-                        --env DOCKER_HOST=tcp://docker:2376 \
-                        --env DOCKER_CERT_PATH=/certs/client \
-                        --env DOCKER_TLS_VERIFY=1 \
                         --publish 8081:8080 \
                         -v /var/run/docker.sock:/var/run/docker.sock \
                         cpswt-core:latest'
@@ -43,7 +31,7 @@ pipeline {
         }
         stage('Wait for container to stop') {
             options {
-                timeout(time: 20, unit: 'MINUTES')
+                timeout(time: 30, unit: 'MINUTES')
             }
             steps {
                 echo 'Wait for container to stop'
@@ -57,25 +45,20 @@ pipeline {
                 archiveArtifacts artifacts: 'cpswt-core.log', fingerprint: true
             }
         }
-        stage('Clean up') {
-            steps {
-                echo 'Tearing Down the image & container....'
-                sh 'docker rm -f cpswt-core'
-                sh 'docker rmi cpswt-core:latest'
-                sh 'docker network rm cpswt-core'
-                sh 'rm -rf cpswt-core'
-            }
-        }
     }
 
     post {
         always {
     	echo 'This will always run'
 	    emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
-        recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
-        subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
-	    attachLog: true,
-        attachmentsPattern: 'cpswt-core.log'
+                recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
+                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
+                attachLog: true,
+                attachmentsPattern: 'cpswt-core.log'
+        echo 'Tearing Down the image & container....'
+        sh 'docker rm -f cpswt-core'
+        sh 'docker rmi cpswt-core:latest'
+        sh 'rm -rf cpswt-core'
         }
     }	
 }
