@@ -93,7 +93,7 @@ pipeline {
                     recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
                     subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
                     attachLog: true,
-                    attachmentsPattern: 'cpswt-meta.log', 'helloworldjava.log'
+                    attachmentsPattern: 'cpswt-meta.log, helloworldjava.log'
             echo 'Tearing Down the image & container....'
             sh 'docker rm -f cpswt-meta'
             sh 'docker rm -f helloworldjava'
