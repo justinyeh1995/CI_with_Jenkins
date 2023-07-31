@@ -9,6 +9,8 @@ The host machine is expected to have the following software installed:
 - [Nginx](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/)
 - [Jenkins](https://www.jenkins.io/doc/book/installing/linux/#debianubuntu)
 
+- [GitHub webhook](https://docs.github.com/en/developers/webhooks-and-events/webhooks/about-webhooks)
+
 ## Configuration 
 Jenkins & Docker
 
