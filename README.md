@@ -13,6 +13,11 @@ The host machine is expected to have the following software installed:
 
 ## Configuration 
 Jenkins & Docker
+- Configure jenkins user to run docker commands without sudo
+```sh
+sudo usermod -aG docker jenkins
+```
+
 
 Jenkins & Nginx
 - [Configure Nginx as a reverse proxy for Jenkins](https://www.jenkins.io/doc/book/system-administration/reverse-proxy-configuration-with-jenkins/reverse-proxy-configuration-nginx/)
