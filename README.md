@@ -18,7 +18,6 @@ Jenkins & Docker
 sudo usermod -aG docker jenkins
 ```
 
-
 Jenkins & Nginx
 - [Configure Nginx as a reverse proxy for Jenkins](https://www.jenkins.io/doc/book/system-administration/reverse-proxy-configuration-with-jenkins/reverse-proxy-configuration-nginx/)
 
