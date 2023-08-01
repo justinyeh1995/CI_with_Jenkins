@@ -55,15 +55,18 @@ gradle wrapper --gradle-version=7.5
 # Run the HelloWorldJava example
 cd /home/cpswt/HelloWorldJava
 
-cat /home/cpswt/cpswt-core/examples/HelloWorldJava/PingCounter/build.gradle.kts > PingCounter/build.gradle.kts
-cat /home/cpswt/cpswt-core/examples/HelloWorldJava/PingCounter/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/pingcounter/PingCounter.java > PingCounter/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/pingcounter/PingCounter.java
-cat /home/cpswt/cpswt-core/examples/HelloWorldJava/Sink/build.gradle.kts > Sink/build.gradle.kts
-cat /home/cpswt/cpswt-core/examples/HelloWorldJava/Sink/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/sink/Sink.java > Sink/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/sink/Sink.java
-cat /home/cpswt/cpswt-core/examples/HelloWorldJava/Source/build.gradle.kts > Source/build.gradle.kts
-cat /home/cpswt/cpswt-core/examples/HelloWorldJava/Source/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/source/Source.java > Source/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/source/Source.java
-cat /home/cpswt/cpswt-core/examples/HelloWorldJava/build.gradle.kts > build.gradle.kts
-cat /home/cpswt/cpswt-core/examples/HelloWorldJava/conf/default_experiment/default_experiment.json > conf/default_experiment/default_experiment.json
-cat /home/cpswt/cpswt-core/examples/HelloWorldJava/settings.gradle.kts > settings.gradle.kts
+diff -ru /home/cpswt/HelloWorldJava/ /home/cpswt/cpswt-core/examples/HelloWorldJava/ > diff.txt
+patch -p0 < diff.txt
+
+# cat /home/cpswt/cpswt-core/examples/HelloWorldJava/PingCounter/build.gradle.kts > PingCounter/build.gradle.kts
+# cat /home/cpswt/cpswt-core/examples/HelloWorldJava/PingCounter/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/pingcounter/PingCounter.java > PingCounter/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/pingcounter/PingCounter.java
+# cat /home/cpswt/cpswt-core/examples/HelloWorldJava/Sink/build.gradle.kts > Sink/build.gradle.kts
+# cat /home/cpswt/cpswt-core/examples/HelloWorldJava/Sink/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/sink/Sink.java > Sink/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/sink/Sink.java
+# cat /home/cpswt/cpswt-core/examples/HelloWorldJava/Source/build.gradle.kts > Source/build.gradle.kts
+# cat /home/cpswt/cpswt-core/examples/HelloWorldJava/Source/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/source/Source.java > Source/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/source/Source.java
+# cat /home/cpswt/cpswt-core/examples/HelloWorldJava/build.gradle.kts > build.gradle.kts
+# cat /home/cpswt/cpswt-core/examples/HelloWorldJava/conf/default_experiment/default_experiment.json > conf/default_experiment/default_experiment.json
+# cat /home/cpswt/cpswt-core/examples/HelloWorldJava/settings.gradle.kts > settings.gradle.kts
 
 gradle wrapper --gradle-version=7.5
 ./gradlew :Source:build
