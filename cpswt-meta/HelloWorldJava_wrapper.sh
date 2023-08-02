@@ -57,6 +57,7 @@ cd /home/cpswt/HelloWorldJava
 
 # Compare & patch the HelloWorldJava from plugins and example from cpswt-core
 diff -Naur /home/cpswt/HelloWorldJava/ /home/cpswt/cpswt-core/examples/HelloWorldJava/ > /home/cpswt/HelloWorldJava/diff.patch
+cat /home/cpswt/HelloWorldJava/diff.patch
 patch -p0 -d /home/cpswt/HelloWorldJava/ < /home/cpswt/HelloWorldJava/diff.patch
 
 # cat /home/cpswt/cpswt-core/examples/HelloWorldJava/PingCounter/build.gradle.kts > PingCounter/build.gradle.kts
