@@ -56,7 +56,7 @@ gradle wrapper --gradle-version=7.5
 cd /home/cpswt/HelloWorldJava
 
 diff -ru /home/cpswt/HelloWorldJava/ /home/cpswt/cpswt-core/examples/HelloWorldJava/ > diff.txt
-patch -p0 < diff.txt
+patch -p0 -d /home/cpswt/HelloWorldJava/ < diff.txt
 
 # cat /home/cpswt/cpswt-core/examples/HelloWorldJava/PingCounter/build.gradle.kts > PingCounter/build.gradle.kts
 # cat /home/cpswt/cpswt-core/examples/HelloWorldJava/PingCounter/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/pingcounter/PingCounter.java > PingCounter/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/pingcounter/PingCounter.java
