@@ -55,7 +55,7 @@ gradle wrapper --gradle-version=7.5
 # Run the HelloWorldJava example
 cd /home/cpswt/HelloWorldJava
 
-diff -ru /home/cpswt/HelloWorldJava/ /home/cpswt/cpswt-core/examples/HelloWorldJava/ > diff.txt
+diff -ruN /home/cpswt/HelloWorldJava/ /home/cpswt/cpswt-core/examples/HelloWorldJava/ > diff.txt
 patch -p0 -d /home/cpswt/HelloWorldJava/ < diff.txt
 
 # cat /home/cpswt/cpswt-core/examples/HelloWorldJava/PingCounter/build.gradle.kts > PingCounter/build.gradle.kts
