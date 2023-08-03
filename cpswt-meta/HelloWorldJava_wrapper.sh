@@ -52,12 +52,14 @@ gradle wrapper --gradle-version=7.5
 ./gradlew :federation-manager:publish 
 ./gradlew :fedmanager-host:publish
 
-# Run the HelloWorldJava example
-cd /home/cpswt/HelloWorldJava
 
 # Compare & patch the HelloWorldJava from plugins and example from cpswt-core
-diff -aur /home/cpswt/HelloWorldJava/ /home/cpswt/cpswt-core/examples/HelloWorldJava/ > /home/cpswt/HelloWorldJava/diff.patch
-patch -p0 -t -d /home/cpswt/HelloWorldJava/ < /home/cpswt/HelloWorldJava/diff.patch
+diff -aur /home/cpswt/HelloWorldJava/ /home/cpswt/cpswt-core/examples/HelloWorldJava/ > diff.patch
+cat diff.patch
+patch -p0 -t -d /home/cpswt/HelloWorldJava/ < diff.patch
+
+# Run the HelloWorldJava example
+cd /home/cpswt/HelloWorldJava
 
 # cat /home/cpswt/cpswt-core/examples/HelloWorldJava/PingCounter/build.gradle.kts > PingCounter/build.gradle.kts
 # cat /home/cpswt/cpswt-core/examples/HelloWorldJava/PingCounter/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/pingcounter/PingCounter.java > PingCounter/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/pingcounter/PingCounter.java
