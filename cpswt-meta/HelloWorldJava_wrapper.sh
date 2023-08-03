@@ -54,9 +54,9 @@ gradle wrapper --gradle-version=7.5
 
 
 # Compare & patch the HelloWorldJava from plugins and example from cpswt-core
-diff -aur /home/cpswt/HelloWorldJava/ /home/cpswt/cpswt-core/examples/HelloWorldJava/ > diff.patch
+diff -aur HelloWorldJava/ cpswt-core/examples/HelloWorldJava/ > diff.patch
 cat diff.patch
-patch -p0 -t -d /home/cpswt/HelloWorldJava/ < diff.patch
+patch -p0 -t -d HelloWorldJava/ < diff.patch
 
 # Run the HelloWorldJava example
 cd /home/cpswt/HelloWorldJava
