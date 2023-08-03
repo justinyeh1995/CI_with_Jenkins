@@ -57,7 +57,7 @@ gradle wrapper --gradle-version=7.5
 cd /home/cpswt
 diff -aur HelloWorldJava/ cpswt-core/examples/HelloWorldJava/ > diff.patch
 cat diff.patch
-patch -p0 -t -d HelloWorldJava/ < diff.patch
+patch -p1 -t -d HelloWorldJava/ < diff.patch
 
 # Run the HelloWorldJava example
 cd /home/cpswt/HelloWorldJava
