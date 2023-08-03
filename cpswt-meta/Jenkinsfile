@@ -46,7 +46,7 @@ pipeline {
             steps {
                 dir("CI_with_Jenkins/cpswt-meta"){
                     sh 'docker cp cpswt-meta:/tmp/HelloWorldJava.zip .'
-                    sh 'unzip HelloWorldJava.zip -d .'
+                    sh 'unzip -o HelloWorldJava.zip -d .'
                     sh 'pwd'
                 }
             }
