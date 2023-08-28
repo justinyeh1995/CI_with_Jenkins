@@ -5,13 +5,13 @@ pipeline {
     // }
 
     // Throttle a declarative pipeline via options
-    options {
-      throttleJobProperty(
-          categories: ['ci_cpswt_build'],
-          throttleEnabled: true,
-          throttleOption: 'category'
-      )
-    }
+    //options {
+    //  throttleJobProperty(
+    //      categories: ['ci_cpswt_build'],
+    //      throttleEnabled: true,
+    //      throttleOption: 'category'
+    //  )
+    //}
 
     stages {
         stage('Clone repository') {
