@@ -60,12 +60,12 @@ WORKDIR /home/cpswt
 RUN mkdir ~/.ssh
 ARG ssh_prv_key
 ARG ssh_pub_key
-RUN echo "$ssh_prv_key" > /root/.ssh/id_rsa && \
-    echo "$ssh_pub_key" > /root/.ssh/id_rsa.pub && \
-    chmod 600 /root/.ssh/id_rsa && \
+RUN echo "$ssh_prv_key" > /root/.ssh/id_rsa
+RUN echo "$ssh_pub_key" > /root/.ssh/id_rsa.pub
+RUN chmod 600 /root/.ssh/id_rsa && \
     chmod 600 /root/.ssh/id_rsa.pub && \
-    ssh-keyscan github.com >> /root/.ssh/known_hosts && \
-    git clone git@github.com:SimIntToolkit/cpswt-meta.git && \
+    ssh-keyscan github.com >> /root/.ssh/known_hosts
+RUN git clone git@github.com:SimIntToolkit/cpswt-meta.git && \
     rm /root/.ssh/id_rsa*
 
 RUN cd cpswt-meta && apt-get install -y python-is-python2
