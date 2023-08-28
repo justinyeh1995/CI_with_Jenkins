@@ -5,13 +5,13 @@ pipeline {
     // }
 
     // Throttle a declarative pipeline via options
-    //options {
-    //  throttleJobProperty(
-    //      categories: ['ci_cpswt_build'],
-    //      throttleEnabled: true,
-    //      throttleOption: 'category'
-    //  )
-    //}
+    options {
+      throttleJobProperty(
+          categories: ['ci_cpswt_build'],
+          throttleEnabled: true,
+          throttleOption: 'category'
+      )
+    }
 
     stages {
         stage('Clone repository') {
@@ -110,13 +110,13 @@ pipeline {
                     attachLog: true,
                     attachmentsPattern: 'cpswt-meta.log, helloworldjava.log'
             // echo 'Tearing Down the image & container....'
-            // sh 'rm -rf cpswt-meta'
-            // sh 'docker rm -f cpswt-meta'
-            // sh 'docker rmi cpswt-meta:latest'
-            // sh 'docker rm -f helloworldjava'
-            // sh 'docker rmi helloworldjava:latest'
-            // sh 'rm -rf HelloWorldJava.zip HelloWorldJava'
-            // sh 'rm -rf cpswt-meta.log helloworldjava.log'
+            sh 'rm -rf cpswt-meta'
+            sh 'docker rm -f cpswt-meta'
+            sh 'docker rmi cpswt-meta:latest'
+            sh 'docker rm -f helloworldjava'
+            sh 'docker rmi helloworldjava:latest'
+            sh 'rm -rf HelloWorldJava.zip HelloWorldJava'
+            sh 'rm -rf cpswt-meta.log helloworldjava.log'
         }
     }	
 }
