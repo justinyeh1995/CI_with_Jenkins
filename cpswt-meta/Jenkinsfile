@@ -4,6 +4,15 @@ pipeline {
     //     pollSCM('*/1 * * * *') // poll the SCM every 1 minutes
     // }
 
+    // Throttle a declarative pipeline via options
+    options {
+      throttleJobProperty(
+          categories: ['ci_cpswt_build'],
+          throttleEnabled: true,
+          throttleOption: 'category'
+      )
+    }
+
     stages {
         stage('Clone repository') {
             steps {
