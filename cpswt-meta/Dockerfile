@@ -57,16 +57,17 @@ RUN bash -c "source ~/.nvm/nvm.sh && nvm use node && cd /home/cpswt/webgme-engin
 
 # Clone cpswt-meta
 WORKDIR /home/cpswt
-RUN mkdir ~/.ssh
+RUN mkdir -p /root/.ssh
 ARG ssh_prv_key
 ARG ssh_pub_key
-RUN echo "$ssh_prv_key" > /root/.ssh/id_rsa
-RUN echo "$ssh_pub_key" > /root/.ssh/id_rsa.pub
-RUN chmod 600 /root/.ssh/id_rsa && \
+# Add the keys and set permissions
+RUN echo "$ssh_prv_key" > /root/.ssh/id_rsa && \
+    echo "$ssh_pub_key" > /root/.ssh/id_rsa.pub && \
+    chmod 600 /root/.ssh/id_rsa && \
     chmod 600 /root/.ssh/id_rsa.pub && \
     ssh-keyscan github.com >> /root/.ssh/known_hosts
-RUN git clone git@github.com:SimIntToolkit/cpswt-meta.git && \
-    rm /root/.ssh/id_rsa*
+RUN git clone git@github.com:SimIntToolkit/cpswt-meta.git
+RUN rm /root/.ssh/id_rsa*
 
 RUN cd cpswt-meta && apt-get install -y python-is-python2
 RUN bash -c "source ~/.nvm/nvm.sh && nvm use 8.10.0 && cd /home/cpswt/cpswt-meta && npm install"
