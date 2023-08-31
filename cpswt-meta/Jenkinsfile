@@ -13,15 +13,6 @@ pipeline {
     //     pollSCM('*/1 * * * *') // poll the SCM every 1 minutes
     // }
 
-    // Throttle a declarative pipeline via options
-    // options {
-    //   throttleJobProperty(
-    //       categories: ['ci_cpswt_build'],
-    //       throttleEnabled: true,
-    //       throttleOption: 'category'
-    //   )
-    // }
-
     stages {
         stage('Clone repository') {
             steps {
@@ -33,7 +24,7 @@ pipeline {
         stage('Build cpswt-meta image') {
             steps {
                 echo 'Start a Docker Container for this experiment, which should start the experiment and a archiva server, a inet server, and a omnet++ server..'
-                sh 'if docker images | grep -q cpswt-meta:latest; then docker rmi cpswt-meta:latest; fi' // Remove the existing image with the name:tag cpswt-meta:latest
+                //sh 'if docker images | grep -q cpswt-meta:latest; then docker rmi cpswt-meta:latest; fi' // Remove the existing image with the name:tag cpswt-meta:latest
                 dir("CI_with_Jenkins/cpswt-meta") {
                     sh 'docker build -t cpswt-meta:latest -f Dockerfile --build-arg ssh_prv_key="$(cat ~/.ssh/id_rsa)" --build-arg ssh_pub_key="$(cat ~/.ssh/id_rsa.pub)" .'
                 }
@@ -42,8 +33,8 @@ pipeline {
         stage('Deploy image') {
             steps {
                 echo 'Run the Docker Container inside Jenkins container'
-                sh 'if docker ps -a | grep -q cpswt-meta; then docker stop cpswt-meta; fi' //Stop the existing container with the name cpswt-meta
-                sh 'if docker ps -a | grep -q cpswt-meta; then docker rm -f cpswt-meta; fi' // Remove the existing container with the name cpswt-meta
+                //sh 'if docker ps -a | grep -q cpswt-meta; then docker stop cpswt-meta; fi' //Stop the existing container with the name cpswt-meta
+                //sh 'if docker ps -a | grep -q cpswt-meta; then docker rm -f cpswt-meta; fi' // Remove the existing container with the name cpswt-meta
                 sh 'docker run \
                         --name cpswt-meta \
                         --publish 8081:8080 \
@@ -72,7 +63,7 @@ pipeline {
         stage('Build HelloWorldJava image') {
             steps {
                 echo 'Start a Docker Container for HelloWorldJava'
-                sh 'if docker images | grep -q helloworldjava:latest; then docker rmi helloworldjava:latest; fi' // Remove the existing image with the name:tag helloworldjava:latest
+                //sh 'if docker images | grep -q helloworldjava:latest; then docker rmi helloworldjava:latest; fi' // Remove the existing image with the name:tag helloworldjava:latest
                 dir("CI_with_Jenkins/cpswt-meta") {
                     sh 'docker build -t helloworldjava:latest -f HelloWorldJava.Dockerfile .'
                 }
@@ -81,8 +72,8 @@ pipeline {
         stage('Deploy HelloWorldJava image') {
             steps {
                 echo 'Run the Docker Container for HelloWorldJava'
-                sh 'if docker ps -a | grep -q helloworldjava; then docker stop helloworldjava; fi' //Stop the existing container with the name helloworldjava
-                sh 'if docker ps -a | grep -q helloworldjava; then docker rm -f helloworldjava; fi' // Remove the existing container with the name helloworldjava
+                //sh 'if docker ps -a | grep -q helloworldjava; then docker stop helloworldjava; fi' //Stop the existing container with the name helloworldjava
+                //sh 'if docker ps -a | grep -q helloworldjava; then docker rm -f helloworldjava; fi' // Remove the existing container with the name helloworldjava
                 sh 'docker run \
                         --name helloworldjava \
                         --publish 8082:8080 \
