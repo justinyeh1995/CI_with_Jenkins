@@ -19,7 +19,7 @@ pipeline {
             steps {
                 echo 'Cloning Forked CPSWT-Core..'
                 deleteDir() // Delete workspace before cloning
-                git url: 'git@github.com:justinyeh1995/CI_with_Jenkins.git', branch: 'develop'
+                sh 'git clone git@github.com:justinyeh1995/CI_with_Jenkins.git'
             }
         }
         stage('Build image') {
