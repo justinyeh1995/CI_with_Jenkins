@@ -25,7 +25,6 @@ pipeline {
         stage('Build image') {
             steps {
                 echo 'Start a Docker Container for this experiment, which should start the experiment and a archiva server, a inet server, and a omnet++ server..'
-                sh 'cd cpswt-core'
                 dir("CI_with_Jenkins/cpswt-core") {
                     sh 'docker build -t cpswt-core:latest -f Dockerfile .'
                 }
