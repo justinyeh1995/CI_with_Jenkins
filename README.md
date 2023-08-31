@@ -9,9 +9,6 @@ The host machine is expected to have the following software installed:
 - [Nginx](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/)
 - [Jenkins](https://www.jenkins.io/doc/book/installing/linux/#debianubuntu)
 
-
-- [GitHub webhook](https://docs.github.com/en/developers/webhooks-and-events/webhooks/about-webhooks)
-
 ## Configuration 
 Jenkins & Docker
 - Configure jenkins user to run docker commands without sudo
@@ -30,6 +27,8 @@ Jenkins & Nginx
 ## Configure Jenkins Job 
 Jenkins new Job
 
+- [GitHub webhook](https://docs.github.com/en/developers/webhooks-and-events/webhooks/about-webhooks) 
+- [Follow this video for setting up a webhook in Jenkins](https://www.youtube.com/watch?v=EQfzQ0kYI84)
 add ssh key
 
 when jenkins runs, the user became `jenkins`, and thus, there should be a pair of ssh keys under `JENKINS_HOME`, in ubuntu it's `/var/lib/jenkins`. Also, add the public key to the github account. Add github.com to the `known_hosts` file.
