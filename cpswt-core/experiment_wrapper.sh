@@ -4,10 +4,10 @@ export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
 export PATH=$JAVA_HOME/bin:$PATH
 
 # disable rest.csrffilter.enabled in archiva.xml
-sed -i '/<rest>/,/<\/csrffilter>/s/<enabled>true/<enabled>false/' /opt/apache-archiva-2.2.5/conf/archiva.xml
-sed -i 's/<baseUrl\/>/<baseUrl>http:\/\/129.59.107.97/archiva-core/<\/baseUrl>/' /opt/apache-archiva-2.2.5/conf/archiva.xml
 cat /opt/apache-archiva-2.2.5/conf/archiva.xml | grep baseUrl
-cat /opt/apache-archiva-2.2.5/conf/archiva.xml
+sed -i '/<rest>/,/<\/csrffilter>/s/<enabled>true/<enabled>false/' /opt/apache-archiva-2.2.5/conf/archiva.xml
+sed -i 's/<baseUrl\/>/<baseUrl>http:\/\/129.59.107.97\/archiva-core\/<\/baseUrl>/' /opt/apache-archiva-2.2.5/conf/archiva.xml
+cat /opt/apache-archiva-2.2.5/conf/archiva.xml | grep baseUrl
 /opt/apache-archiva-2.2.5/bin/archiva start
 
 # wait for archiva to start
