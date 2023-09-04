@@ -41,7 +41,7 @@ cd /home/cpswt
 git clone https://github.com/SimIntToolkit/cpswt-core.git
 cd cpswt-core/cpswt-core
 
-gradle wrapper --gradle-version=7.5
+# gradle wrapper --gradle-version=7.5
 
 ./gradlew :utils:publish 
 ./gradlew :root:publish
