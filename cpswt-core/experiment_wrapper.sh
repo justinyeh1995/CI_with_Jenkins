@@ -43,9 +43,24 @@ sed -i 's/<baseUrl\/>/<baseUrl>http:\/\/129.59.107.97\/archiva-core\/<\/baseUrl>
 cat /opt/apache-archiva-2.2.5/conf/archiva.xml | grep baseUrl
 
 # # restart archiva
-# /opt/apache-archiva-2.2.5/bin/archiva stop
-# /opt/apache-archiva-2.2.5/bin/archiva start
+/opt/apache-archiva-2.2.5/bin/archiva stop
+/opt/apache-archiva-2.2.5/bin/archiva start
 
+echo "Waiting archiva to launch again on 8080..."
+
+while ! nc -z localhost 8080; do   
+  sleep 0.1 # wait for 1/10 of the second before check again
+done
+
+echo "archiva launched"
+
+curl -X POST -H "Content-Type: application/json" -H "Origin: http://localhost:8080" -d @- \
+ http://localhost:8080/restServices/redbackServices/loginService/login <<'TERMINUS'
+{
+    "username": "admin",
+    "password": "adminpass123",
+} 
+TERMINUS
 
 # switch to java 17
 unset JAVA_HOME
