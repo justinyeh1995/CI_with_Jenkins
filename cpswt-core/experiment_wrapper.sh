@@ -2,6 +2,9 @@
 ORIGINAL_PATH=$PATH
 export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
 export PATH=$JAVA_HOME/bin:$PATH
+
+# disable rest.csrffilter.enabled in archiva.xml
+sed -i '/<rest>/,/<\/csrffilter>/s/<enabled>true/<enabled>false/' /opt/apache-archiva-2.2.5/conf/archiva.xml
 /opt/apache-archiva-2.2.5/bin/archiva start
 
 # wait for archiva to start
@@ -41,7 +44,7 @@ cd /home/cpswt
 git clone https://github.com/SimIntToolkit/cpswt-core.git
 cd cpswt-core/cpswt-core
 
-# gradle wrapper --gradle-version=7.5
+gradle wrapper --gradle-version=7.5
 
 ./gradlew :utils:publish 
 ./gradlew :root:publish
