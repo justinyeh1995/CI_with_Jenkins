@@ -4,7 +4,6 @@ export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
 export PATH=$JAVA_HOME/bin:$PATH
 
 # disable rest.csrffilter.enabled in archiva.xml
-cat /opt/apache-archiva-2.2.5/conf/archiva.xml
 sed -i '/<rest>/,/<\/csrffilter>/s/<enabled>true/<enabled>false/' /opt/apache-archiva-2.2.5/conf/archiva.xml
 sed -i 's/<baseUrl\/>/<baseUrl>http:\/\/129.59.107.97\/archiva-core\/<\/baseUrl>/' /opt/apache-archiva-2.2.5/conf/archiva.xml
 cat /opt/apache-archiva-2.2.5/conf/archiva.xml | grep baseUrl
@@ -36,6 +35,17 @@ curl --no-progress-meter -X POST -H "Content-Type: application/json" -H "Origin:
     "confirmPassword": "adminpass123"
 }
 TERMINUS
+
+cat /opt/apache-archiva-2.2.5/conf/archiva.xml
+# disable rest.csrffilter.enabled in archiva.xml
+sed -i '/<rest>/,/<\/csrffilter>/s/<enabled>true/<enabled>false/' /opt/apache-archiva-2.2.5/conf/archiva.xml
+sed -i 's/<baseUrl\/>/<baseUrl>http:\/\/129.59.107.97\/archiva-core\/<\/baseUrl>/' /opt/apache-archiva-2.2.5/conf/archiva.xml
+cat /opt/apache-archiva-2.2.5/conf/archiva.xml | grep baseUrl
+
+# # restart archiva
+# /opt/apache-archiva-2.2.5/bin/archiva stop
+# /opt/apache-archiva-2.2.5/bin/archiva start
+
 
 # switch to java 17
 unset JAVA_HOME
