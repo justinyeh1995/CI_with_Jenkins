@@ -48,7 +48,7 @@ done
 
 echo "archiva launched"
 
-curl -X POST -H "Content-Type: application/json" -H "Origin: http://localhost:8080" -d @- \
+curl --no-progress-meter -X POST -H "Content-Type: application/json" -H "Origin: http://localhost:8080" -d @- \
  http://localhost:8080/restServices/redbackServices/loginService/login <<'TERMINUS'
 {
     "username": "admin",
@@ -68,23 +68,24 @@ cd cpswt-core/cpswt-core
 
 gradle wrapper --gradle-version=7.5
 
-./gradlew :utils:build --rerun-tasks --refresh-dependencies
-./gradlew :root:build --rerun-tasks --refresh-dependencies
-./gradlew :base-events:build --rerun-tasks --refresh-dependencies
-./gradlew :config:build --rerun-tasks --refresh-dependencies
-./gradlew :federate-base:build --rerun-tasks --refresh-dependencies
-./gradlew :coa:build --rerun-tasks --refresh-dependencies
-./gradlew :federation-manager:build --rerun-tasks --refresh-dependencies
-./gradlew :fedmanager-host:build --rerun-tasks --refresh-dependencies
+sh ./cpswt-redeploy.sh
+# ./gradlew :utils:build --rerun-tasks --refresh-dependencies
+# ./gradlew :root:build --rerun-tasks --refresh-dependencies
+# ./gradlew :base-events:build --rerun-tasks --refresh-dependencies
+# ./gradlew :config:build --rerun-tasks --refresh-dependencies
+# ./gradlew :federate-base:build --rerun-tasks --refresh-dependencies
+# ./gradlew :coa:build --rerun-tasks --refresh-dependencies
+# ./gradlew :federation-manager:build --rerun-tasks --refresh-dependencies
+# ./gradlew :fedmanager-host:build --rerun-tasks --refresh-dependencies
 
-./gradlew :utils:publish 
-./gradlew :root:publish
-./gradlew :base-events:publish 
-./gradlew :config:publish
-./gradlew :federate-base:publish 
-./gradlew :coa:publish 
-./gradlew :federation-manager:publish 
-./gradlew :fedmanager-host:publish
+# ./gradlew :utils:publish 
+# ./gradlew :root:publish
+# ./gradlew :base-events:publish 
+# ./gradlew :config:publish
+# ./gradlew :federate-base:publish 
+# ./gradlew :coa:publish 
+# ./gradlew :federation-manager:publish 
+# ./gradlew :fedmanager-host:publish
 
 cd /home/cpswt/cpswt-core/examples/HelloWorldJava
 gradle wrapper --gradle-version=7.5
