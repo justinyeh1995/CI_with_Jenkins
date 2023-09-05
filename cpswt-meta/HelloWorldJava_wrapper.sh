@@ -43,15 +43,7 @@ cd cpswt-core/cpswt-core
 
 gradle wrapper --gradle-version=7.5
 
-./gradlew :utils:publish 
-./gradlew :root:publish
-./gradlew :base-events:publish 
-./gradlew :config:publish
-./gradlew :federate-base:publish 
-./gradlew :coa:publish 
-./gradlew :federation-manager:publish 
-./gradlew :fedmanager-host:publish
-
+sh ./cpswt-redeploy.sh
 
 # Compare & patch the HelloWorldJava from plugins and example from cpswt-core
 cd /home/cpswt
