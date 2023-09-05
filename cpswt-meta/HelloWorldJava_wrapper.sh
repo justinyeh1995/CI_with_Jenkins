@@ -5,7 +5,6 @@ export PATH=$JAVA_HOME/bin:$PATH
 /opt/apache-archiva-2.2.5/bin/archiva start
 
 # wait for archiva to start
-# wait for archiva to start
 echo "Waiting archiva to launch on 8080..."
 
 while ! nc -z localhost 8080; do   
