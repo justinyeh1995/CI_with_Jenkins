@@ -103,5 +103,6 @@ COPY HelloWorldJava /home/cpswt/HelloWorldJava
 
 WORKDIR /home/cpswt
 # Start Archiva
-CMD [ "/usr/bin/bash", "HelloWorldJava_wrapper.sh" ]
+# CMD [ "/usr/bin/bash", "HelloWorldJava_wrapper.sh" ]
+CMD [ "/usr/bin/bash"]
 
