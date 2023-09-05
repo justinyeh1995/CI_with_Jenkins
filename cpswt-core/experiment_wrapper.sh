@@ -46,15 +46,7 @@ while ! nc -z localhost 8080; do
   sleep 0.1 # wait for 1/10 of the second before check again
 done
 
-echo "archiva launched"
-
-curl --no-progress-meter -X POST -H "Content-Type: application/json" -H "Origin: http://localhost:8080" -d @- \
- http://localhost:8080/restServices/redbackServices/loginService/login <<'TERMINUS'
-{
-    "username": "admin",
-    "password": "adminpass123"
-} 
-TERMINUS
+echo "archiva launched again"
 
 # switch to java 17
 unset JAVA_HOME
