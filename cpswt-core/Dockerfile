@@ -101,5 +101,6 @@ COPY experiment_wrapper.sh /home/cpswt
 
 WORKDIR /home/cpswt
 # Start Archiva
-CMD [ "/usr/bin/bash", "experiment_wrapper.sh" ]
+# CMD [ "/usr/bin/bash", "experiment_wrapper.sh" ]
+CMD [ "/usr/bin/bash" ]
 
