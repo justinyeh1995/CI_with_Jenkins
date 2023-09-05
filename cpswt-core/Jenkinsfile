@@ -67,9 +67,9 @@ pipeline {
                 attachLog: true,
                 attachmentsPattern: 'cpswt-core.log'
         echo 'Tearing Down the image & container....'
-        sh 'docker rm -f cpswt-core'
-        sh 'docker rmi cpswt-core:latest'
-        sh 'rm -rf cpswt-core'
+        // sh 'docker rm -f cpswt-core'
+        // sh 'docker rmi cpswt-core:latest'
+        // sh 'rm -rf cpswt-core'
         }
     }	
 }
