@@ -3,10 +3,6 @@ ORIGINAL_PATH=$PATH
 export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
 export PATH=$JAVA_HOME/bin:$PATH
 
-# disable rest.csrffilter.enabled in archiva.xml
-sed -i '/<rest>/,/<\/csrffilter>/s/<enabled>true/<enabled>false/' /opt/apache-archiva-2.2.5/conf/archiva.xml
-sed -i 's/<baseUrl\/>/<baseUrl>http:\/\/129.59.107.97\/archiva-core\/<\/baseUrl>/' /opt/apache-archiva-2.2.5/conf/archiva.xml
-cat /opt/apache-archiva-2.2.5/conf/archiva.xml | grep baseUrl
 /opt/apache-archiva-2.2.5/bin/archiva start
 
 # wait for archiva to start
@@ -36,11 +32,9 @@ curl --no-progress-meter -X POST -H "Content-Type: application/json" -H "Origin:
 }
 TERMINUS
 
-cat /opt/apache-archiva-2.2.5/conf/archiva.xml
 # disable rest.csrffilter.enabled in archiva.xml
 sed -i '/<rest>/,/<\/csrffilter>/s/<enabled>true/<enabled>false/' /opt/apache-archiva-2.2.5/conf/archiva.xml
-sed -i 's/<baseUrl\/>/<baseUrl>http:\/\/129.59.107.97\/archiva-core\/<\/baseUrl>/' /opt/apache-archiva-2.2.5/conf/archiva.xml
-cat /opt/apache-archiva-2.2.5/conf/archiva.xml | grep baseUrl
+# sed -i 's/<baseUrl\/>/<baseUrl>http:\/\/129.59.107.97\/archiva-core\/<\/baseUrl>/' /opt/apache-archiva-2.2.5/conf/archiva.xml
 
 # # restart archiva
 /opt/apache-archiva-2.2.5/bin/archiva stop
@@ -58,7 +52,7 @@ curl -X POST -H "Content-Type: application/json" -H "Origin: http://localhost:80
  http://localhost:8080/restServices/redbackServices/loginService/login <<'TERMINUS'
 {
     "username": "admin",
-    "password": "adminpass123",
+    "password": "adminpass123"
 } 
 TERMINUS
 
