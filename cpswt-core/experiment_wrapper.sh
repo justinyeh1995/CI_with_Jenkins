@@ -68,6 +68,15 @@ cd cpswt-core/cpswt-core
 
 gradle wrapper --gradle-version=7.5
 
+./gradlew :utils:build --rerun-tasks --refresh-dependencies
+./gradlew :root:build --rerun-tasks --refresh-dependencies
+./gradlew :base-events:build --rerun-tasks --refresh-dependencies
+./gradlew :config:build --rerun-tasks --refresh-dependencies
+./gradlew :federate-base:build --rerun-tasks --refresh-dependencies
+./gradlew :coa:build --rerun-tasks --refresh-dependencies
+./gradlew :federation-manager:build --rerun-tasks --refresh-dependencies
+./gradlew :fedmanager-host:build --rerun-tasks --refresh-dependencies
+
 ./gradlew :utils:publish 
 ./gradlew :root:publish
 ./gradlew :base-events:publish 
