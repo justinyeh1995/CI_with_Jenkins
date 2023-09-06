@@ -48,14 +48,6 @@ done
 
 echo "archiva launched  again"
 
-curl --no-progress-meter -X POST -H "Content-Type: application/json" -H "Origin: http://localhost:8080" -d @- \
- http://localhost:8080/restServices/redbackServices/loginService/login <<'TERMINUS'
-{
-    "username": "admin",
-    "password": "adminpass123"
-} 
-TERMINUS
-
 # switch to java 17
 unset JAVA_HOME
 export JAVA_HOME=/usr/lib/jvm/java-1.17.0-openjdk-amd64
@@ -68,25 +60,40 @@ cd cpswt-core/cpswt-core
 
 gradle wrapper --gradle-version=7.5
 
-sh ./cpswt-redeploy.sh
-# ./gradlew :utils:build --rerun-tasks --refresh-dependencies
-# ./gradlew :root:build --rerun-tasks --refresh-dependencies
-# ./gradlew :base-events:build --rerun-tasks --refresh-dependencies
-# ./gradlew :config:build --rerun-tasks --refresh-dependencies
-# ./gradlew :federate-base:build --rerun-tasks --refresh-dependencies
-# ./gradlew :coa:build --rerun-tasks --refresh-dependencies
-# ./gradlew :federation-manager:build --rerun-tasks --refresh-dependencies
-# ./gradlew :fedmanager-host:build --rerun-tasks --refresh-dependencies
+# sh ./cpswt-redeploy.sh
+./gradlew :utils:build --rerun-tasks --refresh-dependencies
+./gradlew :utils:publish 
+echo "utils published"
 
-# ./gradlew :utils:publish 
-# ./gradlew :root:publish
-# ./gradlew :base-events:publish 
-# ./gradlew :config:publish
-# ./gradlew :federate-base:publish 
-# ./gradlew :coa:publish 
-# ./gradlew :federation-manager:publish 
-# ./gradlew :fedmanager-host:publish
+./gradlew :root:build --rerun-tasks --refresh-dependencies
+./gradlew :utils:publish
+echo "root published"
 
+./gradlew :base-events:build --rerun-tasks --refresh-dependencies
+./gradlew :base-events:publish
+echo "base-events published"
+
+./gradlew :config:build --rerun-tasks --refresh-dependencies
+./gradlew :config:publish
+echo "config published"
+
+./gradlew :federate-base:build --rerun-tasks --refresh-dependencies
+/gradlew :federate-base:publish
+echo "federate-base published"
+
+./gradlew :coa:build --rerun-tasks --refresh-dependencies
+./gradlew :coa:publish
+echo "coa published"
+
+./gradlew :federation-manager:build --rerun-tasks --refresh-dependencies
+./gradlew :federation-manager:publish
+echo "federation-manager published"
+
+./gradlew :fedmanager-host:build --rerun-tasks --refresh-dependencies
+./gradlew :fedmanager-host:publish
+echo "fedmanager-host published"
+
+# run the HelloWorldJava example
 cd /home/cpswt/cpswt-core/examples/HelloWorldJava
 gradle wrapper --gradle-version=7.5
 ./gradlew :Source:build
