@@ -66,7 +66,7 @@ gradle wrapper --gradle-version=7.5
 echo "utils published"
 
 ./gradlew :root:build --rerun-tasks --refresh-dependencies
-./gradlew :utils:publish
+./gradlew :root:publish
 echo "root published"
 
 ./gradlew :base-events:build --rerun-tasks --refresh-dependencies
