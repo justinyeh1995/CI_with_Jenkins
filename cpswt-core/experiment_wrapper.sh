@@ -60,10 +60,17 @@ cd cpswt-core/cpswt-core
 
 gradle wrapper --gradle-version=7.5
 
+ARCHIVA_REPO_URL="http://localhost:8080/repository/snapshots/0.7.0-SNAPSHOT/"
+
 # sh ./cpswt-redeploy.sh
 ./gradlew :utils:build --rerun-tasks --refresh-dependencies
 ./gradlew :utils:publish 
 echo "utils published"
+
+while ! curl -s -f -o /dev/null $ARCHIVA_REPO_URL/utils/maven-metadata.xml; do
+    echo "Waiting for archiva to publish utils..."
+    sleep 10
+done
 
 ./gradlew :root:build --rerun-tasks --refresh-dependencies
 ./gradlew :root:publish
