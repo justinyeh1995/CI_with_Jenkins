@@ -80,7 +80,7 @@ echo "base-events published"
 echo "config published"
 
 ./gradlew :federate-base:build --rerun-tasks --refresh-dependencies
-/gradlew :federate-base:publish
+./gradlew :federate-base:publish
 echo "federate-base published"
 
 ./gradlew :coa:build --rerun-tasks --refresh-dependencies
