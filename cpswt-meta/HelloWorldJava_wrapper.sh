@@ -42,7 +42,38 @@ cd cpswt-core/cpswt-core
 
 gradle wrapper --gradle-version=7.5
 
-sh ./cpswt-redeploy.sh
+# sh ./cpswt-redeploy.sh
+./gradlew :utils:build --rerun-tasks --refresh-dependencies
+./gradlew :utils:publish 
+echo "utils published"
+
+./gradlew :root:build --rerun-tasks --refresh-dependencies
+./gradlew :utils:publish
+echo "root published"
+
+./gradlew :base-events:build --rerun-tasks --refresh-dependencies
+./gradlew :base-events:publish
+echo "base-events published"
+
+./gradlew :config:build --rerun-tasks --refresh-dependencies
+./gradlew :config:publish
+echo "config published"
+
+./gradlew :federate-base:build --rerun-tasks --refresh-dependencies
+/gradlew :federate-base:publish
+echo "federate-base published"
+
+./gradlew :coa:build --rerun-tasks --refresh-dependencies
+./gradlew :coa:publish
+echo "coa published"
+
+./gradlew :federation-manager:build --rerun-tasks --refresh-dependencies
+./gradlew :federation-manager:publish
+echo "federation-manager published"
+
+./gradlew :fedmanager-host:build --rerun-tasks --refresh-dependencies
+./gradlew :fedmanager-host:publish
+echo "fedmanager-host published"
 
 # Compare & patch the HelloWorldJava from plugins and example from cpswt-core
 cd /home/cpswt
