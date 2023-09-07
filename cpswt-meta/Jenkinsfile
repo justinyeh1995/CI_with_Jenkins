@@ -37,8 +37,7 @@ pipeline {
                 //sh 'if docker ps -a | grep -q cpswt-meta; then docker rm -f cpswt-meta; fi' // Remove the existing container with the name cpswt-meta
                 sh 'docker run \
                         --name cpswt-meta \
-                        --publish 8081:8080 \
-                        -v /var/run/docker.sock:/var/run/docker.sock \
+                        --network host \
                         cpswt-meta:latest'
             }
         }
@@ -76,8 +75,7 @@ pipeline {
                 //sh 'if docker ps -a | grep -q helloworldjava; then docker rm -f helloworldjava; fi' // Remove the existing container with the name helloworldjava
                 sh 'docker run \
                         --name helloworldjava \
-                        --publish 8082:8080 \
-                        -v /var/run/docker.sock:/var/run/docker.sock \
+                        --network host \
                         helloworldjava:latest'
             }
         }
