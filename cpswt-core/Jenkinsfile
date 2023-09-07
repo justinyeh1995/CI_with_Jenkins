@@ -35,7 +35,7 @@ pipeline {
                 echo 'Run the Docker Container inside Jenkins container'
                 sh 'docker run \
                         --name cpswt-core \
-                        --publish 8081:8080 \
+                        --network host \
                         cpswt-core:latest'
             }
         }
