@@ -30,6 +30,22 @@ curl --no-progress-meter -X POST -H "Content-Type: application/json" -H "Origin:
 }
 TERMINUS
 
+# disable rest.csrffilter.enabled in archiva.xml
+sed -i '/<rest>/,/<\/csrffilter>/s/<enabled>true/<enabled>false/' /opt/apache-archiva-2.2.5/conf/archiva.xml
+# sed -i 's/<baseUrl\/>/<baseUrl>http:\/\/129.59.107.97\/archiva-core\/<\/baseUrl>/' /opt/apache-archiva-2.2.5/conf/archiva.xml
+
+# # restart archiva
+/opt/apache-archiva-2.2.5/bin/archiva stop
+/opt/apache-archiva-2.2.5/bin/archiva start
+
+echo "Waiting archiva to launch again on 8080..."
+
+while ! nc -z localhost 8080; do   
+  sleep 0.1 # wait for 1/10 of the second before check again
+done
+
+echo "archiva launched  again"
+
 # switch to java 17
 unset JAVA_HOME
 export JAVA_HOME=/usr/lib/jvm/java-1.17.0-openjdk-amd64
