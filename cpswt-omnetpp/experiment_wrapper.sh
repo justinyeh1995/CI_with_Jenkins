@@ -56,7 +56,7 @@ cd /home/cpswt
 git clone https://github.com/justinyeh1995/cpswt-core.git
 cd cpswt-core/cpswt-core
 
-gradle wrapper --gradle-version=7.5
+gradle wrapper --gradle-version=8.0
 
 ./gradlew :utils:publish 
 ./gradlew :root:publish
@@ -81,39 +81,12 @@ gradle wrapper --gradle-version=8.0
 ./gradlew :foundation:CPSWTConfig:publish
 ./gradlew :foundation:SynchronizedFederate:publish
 
-# # Install OMNeT++ version 5.6.2
-# cd /home/cpswt
-# wget https://github.com/omnetpp/omnetpp/releases/download/omnetpp-5.6.2/omnetpp-5.6.2-src-linux.tgz
-# # Untar the omnetpp-5.6.2-src-linux.tgz tarball into your /opt directory:
-# tar -xzf omnetpp-5.6.2-src-linux.tgz -C /opt
-
-# # Build OMNeT++ version 5.6.2
-# export PATH="/opt/omnetpp-5.6.2/bin:$PATH"
-# cd /opt/omnetpp-5.6.2
-# ./configure WITH_TKENV=no WITH_QTENV=no
-# make -j$(nproc)
-
-# # Install the INET framework, version 4.2.5
-# cd /home/cpswt
-# wget https://github.com/inet-framework/inet/releases/download/v4.2.5/inet-4.2.5-src.tgz
-# # Untar the inet-4.2.5-src.tgz tarball into your /opt directory:
-# tar -xzf inet-4.2.5-src.tgz -C /opt
-
-# # Build the INET framework, version 4.2.5
-# export INET_HOME="/opt/inet4"
-# bash -li <<TERMINUS
-# cd /opt/inet4
-# . setenv
-# make makefiles
-# make
-# make MODE=debug
-# TERMINUS
-
+# build cpswt-omnetpp
 cd /home/cpswt/cpswt-omnetpp
-
 # Build the OmnetFederate:
 ./gradlew :foundation:OmnetFederate:build
 export OMNETPP_CPSWT_HOME=/home/cpswt/cpswt-omnetpp/foundation/OmnetFederate
+
 cd /home/cpswt/cpswt-omnetpp/examples/HelloWorldOmnetpp
 touch build.dummy.kts
 gradle -b build.dummy.kts wrapper --gradle-version=8.0
