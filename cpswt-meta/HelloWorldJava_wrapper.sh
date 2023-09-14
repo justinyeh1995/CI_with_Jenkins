@@ -77,11 +77,46 @@ echo "fedmanager-host published"
 
 # Compare & patch the HelloWorldJava from plugins and example from cpswt-core
 cd /home/cpswt
-diff -aur HelloWorldJava/ cpswt-core/examples/HelloWorldJava/ > diff.patch
-patch -p1 -t -d HelloWorldJava/ < diff.patch
+# these six files should be purly overwritten only
+cat /home/cpswt/cpswt-core/examples/HelloWorldJava/PingCounter/build.gradle.kts > PingCounter/build.gradle.kts
+cat /home/cpswt/cpswt-core/examples/HelloWorldJava/Sink/build.gradle.kts > Sink/build.gradle.kts
+cat /home/cpswt/cpswt-core/examples/HelloWorldJava/Source/build.gradle.kts > Source/build.gradle.kts
+cat /home/cpswt/cpswt-core/examples/HelloWorldJava/build.gradle.kts > build.gradle.kts
+cat /home/cpswt/cpswt-core/examples/HelloWorldJava/conf/default_experiment/default_experiment.json > conf/default_experiment/default_experiment.json
+cat /home/cpswt/cpswt-core/examples/HelloWorldJava/settings.gradle.kts > settings.gradle.kts
+# diff -aur HelloWorldJava/ cpswt-core/examples/HelloWorldJava/ > diff.patch
+# patch -p1 -t -d HelloWorldJava/ < diff.patch
 
-# for future testing: we can build upon the HelloWorldJava example
-#sed -i 's/OLD_SNIPPET/NEW_SNIPPET/g' file
+# Intent for adding new features to //TODO: 
+# the script should be finding TODOs in the HelloWorldJava and insert behaviours accordingly
+
+# Insert behavior for the TODO part in PingCounter.java
+sed -i -e "s/pingCounter1/pingCounter0/g" -e "/\/\/\/ TODO implement how to handle reception of the object \/\/\//a\
+        if (++counter >= 5) {\
+            exitCondition = true;\
+        }\
+\
+        System.out.println("PingCounter:  ping count is now " + pingCounter0.get_pingCount());\
+" /home/cpswt/cpswt-core/examples/HelloWorldJava/PingCounter/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/pingcounter/PingCounter.java
+
+# Insert behavior for the TODO part in Sink.java
+ sed -i '/new edu.vanderbilt.vuisis.cpswt.hla.ObjectRoot_p.PingCounter();/a \
+    edu.vanderbilt.vuisis.cpswt.hla.ObjectRoot_p.PingCounter PingCounter_0 = \
+    new edu.vanderbilt.vuisis.cpswt.hla.ObjectRoot_p.PingCounter();' HelloWorldJava/Sink/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/sink/Sink.java
+
+sed -i -e '/\/\/ registerObject(PingCounter_0);/a \
+        registerObject(PingCounter_0);' -i -e "s/pingCounter1/pingCounter0/g" HelloWorldJava/Sink/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/sink/Sink.java
+        
+sed -i "" HelloWorldJava/Sink/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/sink/Sink.java 
+
+# Insert behavior for the TODO part in Source.java
+sed -i "/\/\/ Set the interaction's parameters./a\
+        \
+        System.out.println(\"Source:  sending ping\");\
+        edu.vanderbilt.vuisis.cpswt.hla.InteractionRoot_p.C2WInteractionRoot_p.Ping Ping0 = create_InteractionRoot_C2WInteractionRoot_Ping();\
+        Ping0.set_actualLogicalGenerationTime( currentTime );\
+        Ping0.set_federateFilter( \"\" );\
+        sendInteraction(Ping0, currentTime + getLookahead());" HelloWorldJava/Source/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/source/Source.java
 
 # Run the HelloWorldJava example
 cd /home/cpswt/HelloWorldJava
