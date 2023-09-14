@@ -81,6 +81,15 @@ gradle wrapper --gradle-version=8.0
 ./gradlew :foundation:CPSWTConfig:publish
 ./gradlew :foundation:SynchronizedFederate:publish
 
+# build & publish cpswt-cyberlib
+cd /home/cpswt
+git clone git@github.com:SimIntToolkit/cpswt-cyberlib.git
+cd cpswt-cyberlib
+
+gradle wrapper --gradle-version=8.0
+./gradlew :CyberLib:build
+./gradlew :CyberLib:publish
+
 # build cpswt-omnetpp
 cd /home/cpswt/cpswt-omnetpp
 # Build the OmnetFederate:
