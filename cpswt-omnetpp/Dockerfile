@@ -138,6 +138,7 @@ RUN echo "$ssh_prv_key" > /root/.ssh/id_rsa && \
     chmod 600 /root/.ssh/id_rsa.pub && \
     ssh-keyscan github.com >> /root/.ssh/known_hosts && \
     git clone git@github.com:SimIntToolkit/cpswt-omnetpp.git && \
+    git clone git@github.com:SimIntToolkit/cpswt-cyberlib.git && \
     rm /root/.ssh/id_rsa*
 
 WORKDIR /home/cpswt

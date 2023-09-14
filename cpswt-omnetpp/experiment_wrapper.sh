@@ -82,9 +82,7 @@ gradle wrapper --gradle-version=8.0
 ./gradlew :foundation:SynchronizedFederate:publish
 
 # build & publish cpswt-cyberlib
-cd /home/cpswt
-git clone git@github.com:SimIntToolkit/cpswt-cyberlib.git
-cd cpswt-cyberlib
+cd /home/cpswt/cpswt-cyberlib
 
 gradle wrapper --gradle-version=8.0
 ./gradlew :CyberLib:build
