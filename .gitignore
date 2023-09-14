@@ -131,3 +131,5 @@ dist
 
 # internal webgmex files
 *.webgmex
+
+.DS_Store
