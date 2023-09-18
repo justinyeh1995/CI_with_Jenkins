@@ -59,6 +59,7 @@ cd cpswt-core/cpswt-core
 gradle wrapper --gradle-version=7.5
 
 # sh ./cpswt-redeploy.sh
+# sh ./cpswt-redeploy.sh
 ./gradlew :utils:build --rerun-tasks --refresh-dependencies
 ./gradlew :utils:publish 
 echo "utils published"
@@ -76,7 +77,7 @@ echo "base-events published"
 echo "config published"
 
 ./gradlew :federate-base:build --rerun-tasks --refresh-dependencies
-/gradlew :federate-base:publish
+./gradlew :federate-base:publish
 echo "federate-base published"
 
 ./gradlew :coa:build --rerun-tasks --refresh-dependencies
@@ -97,12 +98,12 @@ cd /home/cpswt
 # patch -p1 -t -d HelloWorldJava/ < diff.patch
 
 # these six files should be purly overwritten only
-cat /home/cpswt/cpswt-core/examples/HelloWorldJava/PingCounter/build.gradle.kts > PingCounter/build.gradle.kts
-cat /home/cpswt/cpswt-core/examples/HelloWorldJava/Sink/build.gradle.kts > Sink/build.gradle.kts
-cat /home/cpswt/cpswt-core/examples/HelloWorldJava/Source/build.gradle.kts > Source/build.gradle.kts
-cat /home/cpswt/cpswt-core/examples/HelloWorldJava/build.gradle.kts > build.gradle.kts
-cat /home/cpswt/cpswt-core/examples/HelloWorldJava/conf/default_experiment/default_experiment.json > conf/default_experiment/default_experiment.json
-cat /home/cpswt/cpswt-core/examples/HelloWorldJava/settings.gradle.kts > settings.gradle.kts
+cat /home/cpswt/cpswt-core/examples/HelloWorldJava/PingCounter/build.gradle.kts > HelloWorldJava/PingCounter/build.gradle.kts
+cat /home/cpswt/cpswt-core/examples/HelloWorldJava/Sink/build.gradle.kts > HelloWorldJava/Sink/build.gradle.kts
+cat /home/cpswt/cpswt-core/examples/HelloWorldJava/Source/build.gradle.kts > HelloWorldJava/Source/build.gradle.kts
+cat /home/cpswt/cpswt-core/examples/HelloWorldJava/build.gradle.kts > HelloWorldJava/build.gradle.kts
+cat /home/cpswt/cpswt-core/examples/HelloWorldJava/conf/default_experiment/default_experiment.json > HelloWorldJava/conf/default_experiment/default_experiment.json
+cat /home/cpswt/cpswt-core/examples/HelloWorldJava/settings.gradle.kts > HelloWorldJava/settings.gradle.kts
 # diff -aur HelloWorldJava/ cpswt-core/examples/HelloWorldJava/ > diff.patch
 # patch -p1 -t -d HelloWorldJava/ < diff.patch
 
