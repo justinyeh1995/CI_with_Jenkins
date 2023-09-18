@@ -94,32 +94,47 @@ cat /home/cpswt/cpswt-core/examples/HelloWorldJava/settings.gradle.kts > setting
 # the script should be finding TODOs in the HelloWorldJava and insert behaviours accordingly
 
 # Insert behavior for the TODO part in PingCounter.java
-sed -i -e "s/pingCounter1/pingCounter0/g" -e "/\/\/\/ TODO implement how to handle reception of the object \/\/\//a\
+sed -i -e "s/pingCounter1/pingCounter0/g" HelloWorldJava/PingCounter/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/pingcounter/PingCounter.java
+
+sed -i -e '/TODO implement how to handle reception of the object/ a\
         if (++counter >= 5) {\
             exitCondition = true;\
         }\
 \
         System.out.println("PingCounter:  ping count is now " + pingCounter0.get_pingCount());\
-" /home/cpswt/cpswt-core/examples/HelloWorldJava/PingCounter/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/pingcounter/PingCounter.java
+' HelloWorldJava/PingCounter/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/pingcounter/PingCounter.java
 
 # Insert behavior for the TODO part in Sink.java
- sed -i '/new edu.vanderbilt.vuisis.cpswt.hla.ObjectRoot_p.PingCounter();/a \
+ sed -i -e '/new edu.vanderbilt.vuisis.cpswt.hla.ObjectRoot_p.PingCounter();/ a\
     edu.vanderbilt.vuisis.cpswt.hla.ObjectRoot_p.PingCounter PingCounter_0 = \
     new edu.vanderbilt.vuisis.cpswt.hla.ObjectRoot_p.PingCounter();' HelloWorldJava/Sink/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/sink/Sink.java
 
-sed -i -e '/\/\/ registerObject(PingCounter_0);/a \
-        registerObject(PingCounter_0);' -i -e "s/pingCounter1/pingCounter0/g" HelloWorldJava/Sink/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/sink/Sink.java
+sed -i -e '/registerObject(PingCounter_0);/ a\
+        registerObject(PingCounter_0);' HelloWorldJava/Sink/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/sink/Sink.java
         
-sed -i -e "" HelloWorldJava/Sink/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/sink/Sink.java 
+sed -i -e "s/ping0/ping1/g" HelloWorldJava/Sink/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/sink/Sink.java
+        
+sed -i -e '/TODO implement how to handle reception of the interaction /a\
+\
+        System.out.println("Sink:  Received ping.  Updating ping count to " + ++pingCount); \
+\
+        PingCounter_0.set_pingCount(pingCount); \
+        try { \
+            updateAttributeValues(PingCounter_0, currentTime + getLookahead()); \
+        } catch (Exception exception) { \
+            System.err.println("Received Exception:  " + exception.getMessage()); \
+            exception.printStackTrace(); \
+        }' HelloWorldJava/Sink/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/sink/Sink.java
 
 # Insert behavior for the TODO part in Source.java
-sed -i "/\/\/ Set the interaction's parameters./a\
-        \
-        System.out.println(\"Source:  sending ping\");\
-        edu.vanderbilt.vuisis.cpswt.hla.InteractionRoot_p.C2WInteractionRoot_p.Ping Ping0 = create_InteractionRoot_C2WInteractionRoot_Ping();\
-        Ping0.set_actualLogicalGenerationTime( currentTime );\
-        Ping0.set_federateFilter( \"\" );\
-        sendInteraction(Ping0, currentTime + getLookahead());" HelloWorldJava/Source/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/source/Source.java
+sed -i -e "/Set the interaction's parameters./a\\
+\\
+            System.out.println(\"Source:  sending ping\");\\
+            edu.vanderbilt.vuisis.cpswt.hla.InteractionRoot_p.C2WInteractionRoot_p.Ping Ping0 = create_InteractionRoot_C2WInteractionRoot_Ping();\\
+            Ping0.set_actualLogicalGenerationTime( currentTime );\\
+            Ping0.set_federateFilter( \"\" );\\
+            sendInteraction(Ping0, currentTime + getLookahead());" HelloWorldJava/Source/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/source/Source.java
+
 
 # Run the HelloWorldJava example
 cd /home/cpswt/HelloWorldJava
