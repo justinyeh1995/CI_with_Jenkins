@@ -111,6 +111,11 @@ cat /home/cpswt/cpswt-core/examples/HelloWorldJava/settings.gradle.kts > HelloWo
 # the script should be finding TODOs in the HelloWorldJava and insert behaviours accordingly
 
 # Insert behavior for the TODO part in PingCounter.java
+sed -i -e '/private void handleObjectClass_ObjectRoot_PingCounter(ObjectRoot objectRoot)/ i\
+    int counter = 0;\
+  
+' HelloWorldJava/PingCounter/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/pingcounter/PingCounter.java
+
 sed -i -e "s/pingCounter1/pingCounter0/g" HelloWorldJava/PingCounter/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/pingcounter/PingCounter.java
 
 sed -i -e '/TODO implement how to handle reception of the object/ a\
@@ -122,6 +127,9 @@ sed -i -e '/TODO implement how to handle reception of the object/ a\
 ' HelloWorldJava/PingCounter/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/pingcounter/PingCounter.java
 
 # Insert behavior for the TODO part in Sink.java
+sed -i -e '/private double currentTime = 0;/ a\
+    private int pingCount = 0;\' HelloWorldJava/Sink/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/sink/Sink.java
+
  sed -i -e '/new edu.vanderbilt.vuisis.cpswt.hla.ObjectRoot_p.PingCounter();/ a\
     edu.vanderbilt.vuisis.cpswt.hla.ObjectRoot_p.PingCounter PingCounter_0 = \
     new edu.vanderbilt.vuisis.cpswt.hla.ObjectRoot_p.PingCounter();' HelloWorldJava/Sink/src/main/java/edu/vanderbilt/vuisis/cpswt/hla/helloworldjava/sink/Sink.java
