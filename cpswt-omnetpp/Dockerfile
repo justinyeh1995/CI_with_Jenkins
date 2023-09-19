@@ -99,19 +99,21 @@ RUN chmod 600 /root/.gradle/gradle.properties
 WORKDIR /home/cpswt
 RUN wget https://github.com/omnetpp/omnetpp/releases/download/omnetpp-5.6.2/omnetpp-5.6.2-src-linux.tgz
 # Untar the omnetpp-5.6.2-src-linux.tgz tarball into your /opt directory:
-RUN tar -xzf omnetpp-5.6.2-src-linux.tgz -C /opt
+RUN tar xf omnetpp-5.6.2-src-linux.tgz -C /opt
 
 # Build OMNeT++ version 5.6.2
 ENV PATH="/opt/omnetpp-5.6.2/bin:$PATH"
 WORKDIR /opt/omnetpp-5.6.2
-RUN ./configure WITH_TKENV=no WITH_QTENV=no
-RUN make -j$(nproc)
+# RUN ./configure WITH_TKENV=no WITH_QTENV=no
+RUN ./configure
+# RUN make -j$(nproc)
+RUN make 
 
 # Install the INET framework, version 4.2.5
 WORKDIR /home/cpswt
 RUN wget https://github.com/inet-framework/inet/releases/download/v4.2.5/inet-4.2.5-src.tgz
 # Untar the inet-4.2.5-src.tgz tarball into your /opt directory:
-RUN tar -xzf inet-4.2.5-src.tgz -C /opt
+RUN tar xf inet-4.2.5-src.tgz -C /opt
 
 # Build the INET framework, version 4.2.5
 ENV INET_HOME="/opt/inet4"
