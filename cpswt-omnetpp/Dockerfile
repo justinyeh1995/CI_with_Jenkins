@@ -143,4 +143,5 @@ RUN echo "$ssh_prv_key" > /root/.ssh/id_rsa && \
 
 WORKDIR /home/cpswt
 # Start Archiva
-CMD ["/usr/bin/bash", "experiment_wrapper.sh"] 
+#CMD ["/usr/bin/bash", "experiment_wrapper.sh"] 
+CMD ["/usr/bin/bash"] 
