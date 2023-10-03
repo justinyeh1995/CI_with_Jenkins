@@ -38,7 +38,7 @@ pipeline {
                 //sh 'if docker ps -a | grep -q cpswt-cpp; then docker rm -f cpswt-cpp; fi' // Remove the existing container with the name cpswt-cpp
                 sh 'docker run \
                         --name cpswt-cpp \
-			-p 8082:8080
+			-p 8082:8080 \
                         cpswt-cpp:latest'
             }
         }
