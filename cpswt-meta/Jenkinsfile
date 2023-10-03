@@ -75,7 +75,7 @@ pipeline {
                 //sh 'if docker ps -a | grep -q helloworldjava; then docker rm -f helloworldjava; fi' // Remove the existing container with the name helloworldjava
                 sh 'docker run \
                         --name helloworldjava \
-                        --network host \
+			-p 8084:8080
                         helloworldjava:latest'
             }
         }

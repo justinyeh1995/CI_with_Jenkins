@@ -28,7 +28,7 @@ pipeline {
                 //sh 'if docker ps -a | grep -q cpswt-omnetpp; then docker rm -f cpswt-omnetpp; fi' // Remove the existing container with the name cpswt-omnetpp
                 sh 'docker run \
                         --name cpswt-omnetpp \
-                        --network host \
+			-p 8083:8080
                         cpswt-omnetpp:latest'
             }
         }
